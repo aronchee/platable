@@ -45,3 +45,5 @@ group :development do
   gem 'spring'
 end
 
+#devise for sign in and out
+gem 'devise'
