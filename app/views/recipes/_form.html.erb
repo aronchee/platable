@@ -1,0 +1,10 @@
+<%= form_tag '/search', method: :get do %>
+
+  <%= text_field_tag :ingredient, params[:ingredient][1], placeholder: 'ingredient' %>
+  <%= text_field_tag :ingredient, params[:ingredient][2], placeholder: 'ingredient' %>
+  <%= text_field_tag :ingredient, params[:ingredient][3], placeholder: 'ingredient' %>
+  <%= text_field_tag :ingredient, params[:ingredient][4], placeholder: 'ingredient' %>
+
+  <%= submit_tag 'search', class: 'btn btn-primary' %>
+<% end %>
+
