@@ -57,7 +57,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
   get 'welcome/index'
 
-  get 'users/edit'
-  get 'users/update'
+  resources :users
+  # get 'users/edit'
+  # get 'users/update'
 
 end
