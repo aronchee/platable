@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   resources :recipes, only: [:show, :index, :cook]
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -59,7 +60,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
   get 'welcome/index'
 
-  resources :users
+  resources :users do 
+    resources :plans
+  end
   # get 'users/edit'
   # get 'users/update'
 
