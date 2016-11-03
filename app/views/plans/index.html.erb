@@ -1,16 +1,16 @@
 <style>
-table, td, th {
-    border: 1px solid black;
-}
+	table, td, th {
+	    border: 1px solid black;
+	}
 
-table {
-    border-collapse: collapse;
-    width: 60%;
-}
+	table {
+	    border-collapse: collapse;
+	    width: 60%;
+	}
 
-th {
-    height: 50px;
-}
+	th {
+	    height: 50px;
+	}
 </style>
 
 
@@ -21,22 +21,20 @@ th {
 <table>
   <tr>
     <th><%= Date.today.strftime('%a %d/%m') %></th>
-    <th><%= 1.days.since.strftime('%a %d/%m') %></th>
-    <th><%= 2.days.since.strftime('%a %d/%m') %></th>
-    <th><%= 3.days.since.strftime('%a %d/%m') %></th>
-    <th><%= 4.days.since.strftime('%a %d/%m') %></th>
-    <th><%= 5.days.since.strftime('%a %d/%m') %></th>
-    <th><%= 6.days.since.strftime('%a %d/%m') %></th>
+
+    <% 6.times do |z| %>
+    	<th><%= (z+1).days.since.strftime('%a %d/%m') %></th>
+    <% end %>
   </tr>
+
   <tr>
-    <td><%= link_to "Add recipe", new_user_plan_path(current_user, :date => Date.today.strftime('%d/%m/%Y') ) %></td>
-    <td><%= link_to "Add recipe", new_user_plan_path(current_user, :date => 1.days.since.strftime('%d/%m/%Y') ) %></td>
-    <td><%= link_to "Add recipe", new_user_plan_path(current_user, :date => 2.days.since.strftime('%d/%m/%Y') ) %></td>
-    <td><%= link_to "Add recipe", new_user_plan_path(current_user, :date => 3.days.since.strftime('%d/%m/%Y') ) %></td>
-    <td><%= link_to "Add recipe", new_user_plan_path(current_user, :date => 4.days.since.strftime('%d/%m/%Y') ) %></td>
-    <td><%= link_to "Add recipe", new_user_plan_path(current_user, :date => 5.days.since.strftime('%d/%m/%Y') ) %></td>
-    <td><%= link_to "Add recipe", new_user_plan_path(current_user, :date => 6.days.since.strftime('%d/%m/%Y') ) %></td>
+    <td><%= button_to "Add recipe", new_user_plan_path, method: :get, params: { :date => Date.today.strftime('%d/%m/%Y')}%></td>
+
+    <% 6.times do |y| %>
+    	<td><%= button_to "Add recipe", new_user_plan_path, method: :get, params: {:date => (y+1).days.since.strftime('%d/%m/%Y')} %></td>
+    <% end %>
 	</tr>
+
 	<tr>
 		<% if @day1 %>
 			<td>
@@ -46,52 +44,16 @@ th {
 			</td>
 		<% end %>
 
-		<% if @day2 %>
-			<td>
-				<% @day2.each do |b| %>
-					<%= b.recipe_id %>  <%= link_to "X", user_plan_path(:user_id => b.user_id, :id => b.id), method: :delete %><br>
-				<% end %>
-			</td>
-		<% end %>
-
-		<% if @day3 %>
-			<td>
-				<% @day3.each do |c| %>
-					<%= c.recipe_id %>   <%= link_to "X", user_plan_path(:user_id => c.user_id, :id => c.id), method: :delete %><br>
-				<% end %>
+		<% 6.times do |x| %>
+			<% if @plans.where(date: (x+1).days.since.strftime('%Y-%m-%d')) %>
+				<td>
+					<% @plans.where(date: (x+1).days.since.strftime('%Y-%m-%d')).each do |x| %>
+						<%= x.recipe_id %>  <%= link_to "X", user_plan_path(:user_id => x.user_id, :id => x.id), method: :delete %><br>
+					<% end %>
 				</td>
-		<% end %>
-
-		<% if @day4 %>
-			<td>
-				<% @day4.each do |d| %>
-					<%= d.recipe_id %>  <%= link_to "X", user_plan_path(:user_id => d.user_id, :id => d.id), method: :delete %><br>
-				<% end %>
-			</td>
-		<% end %>
-
-		<% if @day5 %>
-			<td>
-				<% @day5.each do |e| %>
-					<%= e.recipe_id %>  <%= link_to "X", user_plan_path(:user_id => e.user_id, :id => e.id), method: :delete %><br>
-				<% end %>
-			</td>
-		<% end %>
-
-		<% if @day6 %>
-			<td>
-				<% @day6.each do |f| %>
-					<%= f.recipe_id %>  <%= link_to "X", user_plan_path(:user_id => f.user_id, :id => f.id), method: :delete %><br>
-				<% end %>
-			</td>
-		<% end %>
-
-		<% if @day7 %>
-			<td>
-				<% @day7.each do |g| %>
-					<%= g.recipe_id %>  <%= link_to "X", user_plan_path(:user_id => g.user_id, :id => g.id), method: :delete %><br>
-				<% end %>
-			</td>
+			<% end %>
 		<% end %>
 	</tr>
 </table>
+
+
