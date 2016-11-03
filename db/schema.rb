@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103044405) do
+ActiveRecord::Schema.define(version: 20161103082224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,53 @@ ActiveRecord::Schema.define(version: 20161103044405) do
     t.date     "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredient_amounts", force: :cascade do |t|
+    t.integer  "amount"
+    t.string   "unit"
+    t.integer  "ingredient_id"
+    t.integer  "recipe_id"
+    t.string   "remarks",       default: [],              array: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "ingredient_amounts", ["ingredient_id"], name: "index_ingredient_amounts_on_ingredient_id", using: :btree
+  add_index "ingredient_amounts", ["recipe_id"], name: "index_ingredient_amounts_on_recipe_id", using: :btree
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string   "name"
+    t.string   "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "nutrition_estimates", force: :cascade do |t|
+    t.integer  "calories"
+    t.float    "fat"
+    t.float    "protein"
+    t.integer  "cholesterol"
+    t.integer  "sodium"
+    t.float    "carbs"
+    t.integer  "recipe_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "nutrition_estimates", ["recipe_id"], name: "index_nutrition_estimates_on_recipe_id", using: :btree
+
+  create_table "recipes", force: :cascade do |t|
+    t.string   "source"
+    t.string   "name"
+    t.string   "image"
+    t.integer  "number_of_servings"
+    t.text     "directions",         default: [],              array: true
+    t.integer  "time_in_min"
+    t.string   "ingredient_text",    default: [],              array: true
+    t.string   "categories",         default: [],              array: true
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,4 +91,7 @@ ActiveRecord::Schema.define(version: 20161103044405) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "ingredient_amounts", "ingredients"
+  add_foreign_key "ingredient_amounts", "recipes"
+  add_foreign_key "nutrition_estimates", "recipes"
 end
