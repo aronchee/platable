@@ -1,0 +1,12 @@
+<h1>Groceries#new</h1>
+<p>Find me in app/views/groceries/new.html.erb</p>
+
+
+<%= form_for [@user, @grocery] do |f| %>
+
+	<%= f.label "Ingredient" %>
+	<%= f.text_field :ingredient_id %>
+
+	<%= f.submit "Add" %>
+
+<% end %>

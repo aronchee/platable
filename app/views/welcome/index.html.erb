@@ -3,8 +3,8 @@
 <%= link_to "Search", search_path %>
 <% if current_user %>
 	<%= link_to "Meal Planner", user_plans_path(current_user), method: :get %>
-	<%= link_to "Grocery List" %>
+	<%= link_to "Grocery List", user_groceries_path(current_user) %>
 <% else %>
 	<%= link_to "Meal Planner", new_user_session_path %>
-	<%= link_to "Grocery List" %>
+	<%= link_to "Grocery List", new_user_session_path %>
 <% end %>
