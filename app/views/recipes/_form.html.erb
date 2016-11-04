@@ -1,10 +1,68 @@
-<%= form_tag '/search', method: :get do %>
+<%= form_tag '/search', method: :get, remote: true do %>
 
-  <%= text_field_tag :ingredient, params[:ingredient][1], placeholder: 'ingredient' %>
-  <%= text_field_tag :ingredient, params[:ingredient][2], placeholder: 'ingredient' %>
-  <%= text_field_tag :ingredient, params[:ingredient][3], placeholder: 'ingredient' %>
-  <%= text_field_tag :ingredient, params[:ingredient][4], placeholder: 'ingredient' %>
+  <input type="text" name="ingredient[]" placeholder="ingredient" class="ingredient-autocomplete"/>
+  <input type="text" name="ingredient[]" placeholder="ingredient" class="ingredient-autocomplete"/>
+  <input type="text" name="ingredient[]" placeholder="ingredient" class="ingredient-autocomplete"/>
+  <input type="text" name="ingredient[]" placeholder="ingredient" class="ingredient-autocomplete"/>
+	<br/><br/>
+	
+  <% Recipe::EXCLUSION.each do |x| %>
+  	<%= check_box_tag x %>
+  	<%= label "exclude_#{x}", x %>
+  <% end %>
+  <br/><br/>
 
-  <%= submit_tag 'search', class: 'btn btn-primary' %>
+  <% Recipe::CUISINE.each do |x| %>
+  	<%= radio_button_tag 'cuisine', x %>
+  	<%= label "cuisine_#{x}", x %>
+  <% end %>
+	<br/><br/>
+
+  <% Recipe::CATEGORY.each do |x| %>
+  	<%= radio_button_tag 'category', x %>
+  	<%= label "category_#{x}", x %>
+  <% end %>  
+	<br/><br/>
+	
+  <% Recipe::MAIN_INGREDIENT.each do |x| %>
+  	<%= radio_button_tag 'main', x %>
+  	<%= label "main_#{x}", x %>
+  <% end %>  
+	<br/><br/>
+	
+  <% Recipe::PREP_TIME.each do |k, v| %>
+  	<%= radio_button_tag 'time', v %>
+  	<%= label "time_#{k}", k %>
+  <% end %>
+	<br/><br/>
+	
+	<!-- nutrition filter -->
+	<%= radio_button_tag 'filter[calorie]', '< 400' %>
+  <%= label "calorie_low", 'Low calories' %>
+
+  <%= radio_button_tag 'filter[carbs]', '< 10.0' %>
+  <%= label "carbs_low", 'Low carbs' %>
+
+  <%= radio_button_tag 'filter[sodium]', '< 140' %>
+  <%= label "sodium_low", 'Low sodium' %>
+
+  <%= radio_button_tag 'filter[fat]', '< 3' %>
+  <%= label "fat_low", 'Low fat' %>
+
+  <%= radio_button_tag 'filter[fat]', '< 10' %>
+  <%= label "fat_less", 'Less fat' %>
+
+  <%= radio_button_tag 'filter[cholesterol]', '< 20' %>
+  <%= label "cholesterol_low", 'Low cholesterol' %>
+
+  <%= radio_button_tag 'filter[cholesterol]', '= 0' %>
+  <%= label "cholesterol_none", 'No cholesterol' %>
+
+  <%= radio_button_tag 'filter[protein]', '> 20' %>
+  <%= label "protein_high", 'High protein' %>
+
+	<!-- end of nutrition filter -->
+	<br/><br/>
+
+  <%= submit_tag 'search' %>
 <% end %>
-
