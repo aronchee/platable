@@ -4,6 +4,7 @@ class GroceriesController < ApplicationController
 
   def index
   	@user = current_user
+  	@grocery = Grocery.new
   	@unchecked_groceries = Grocery.where(user_id: @user.id, checked: false)
   	@checked_groceries = Grocery.where(user_id: @user.id, checked: true)
   end
@@ -31,7 +32,7 @@ class GroceriesController < ApplicationController
   	elsif params[:checked] == "false" # if the checked item continue to be checked and they press update, no change
   		@grocery.update(checked: true)
   	else
-  		@grocery.update(checked: false) # if they uncheck the box, :checked = nil, then it will move up to uncheck item
+  		@grocery.update(checked: false) # if they uncheck the box, :checked = nil, then
   	end
 
   	redirect_to user_groceries_path
