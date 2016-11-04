@@ -1,0 +1,12 @@
+<div class="review">
+<% if @recipes.any? %>
+	<%= @recipes.length %> search results<br/>
+	<% @recipes.each do |recipe| %>
+		<%= recipe.name %>
+		<%= image_tag recipe.image, height: "100" %>
+		<br/>
+	<% end %>
+<% else %>
+	<h1>No recipe found</h1>
+<% end %>
+</div>
