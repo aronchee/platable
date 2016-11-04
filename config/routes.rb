@@ -57,7 +57,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
   get 'welcome/index'
 
-  resources :users
+  resources :users do
+    resources :groceries, only: [:index, :new, :create, :update, :destroy]
+  end
   # get 'users/edit'
   # get 'users/update'
 

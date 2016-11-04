@@ -1,0 +1,4 @@
+<%= form_for @groceries do |f| %>
+	<%= f.check.box :checked %>
+	<%= f.label :checked, @groceries.ingredient_id %>
+<% end %>
