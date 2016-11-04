@@ -1,0 +1,13 @@
+<%= render 'form' %>
+<div id="search-results">
+
+</div>
+
+<script>
+  $( function() {
+    var availableTags = <%= @all_ingredients.inspect.html_safe %>;
+    $( ".ingredient-autocomplete" ).autocomplete({
+      source: availableTags
+    });
+  } );
+</script>
