@@ -62,5 +62,6 @@ Rails.application.routes.draw do
   end
   # get 'users/edit'
   # get 'users/update'
+  delete 'users/:user_id/groceries/clear_checked' => 'groceries#delete', as: :clear_checked
 
 end

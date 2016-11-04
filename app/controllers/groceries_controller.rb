@@ -26,10 +26,12 @@ class GroceriesController < ApplicationController
 
   	@grocery = Grocery.find(params[:id])
 
-  	if params[:checked] == "true"
+  	if params[:checked] == "true" # uncheck => checked
+  		@grocery.update(checked: true)
+  	elsif params[:checked] == "false" # if the checked item continue to be checked and they press update, no change
   		@grocery.update(checked: true)
   	else
-  		@grocery.update(checked: false)
+  		@grocery.update(checked: false) # if they uncheck the box, :checked = nil, then it will move up to uncheck item
   	end
 
   	redirect_to user_groceries_path
@@ -37,11 +39,20 @@ class GroceriesController < ApplicationController
 
   def destroy
 
-  	@grocery = Grocery.find(params[:id])
-  	@grocery.destroy
+  	if params[:id] == "clear_checked"
+  		@groceries = Grocery.where(user_id: params[:user_id], checked: true)
+  		@groceries.each do |x|
+  			x.destroy
+  		end
+  	else
+	  	@grocery = Grocery.find(params[:id])
+	  	@grocery.destroy
+  	end
 
   	redirect_to user_groceries_path
   end
+
+
 
   private
   def grocery_params

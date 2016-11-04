@@ -1,7 +1,7 @@
 <h1>Groceries#index</h1>
 <p>Find me in app/views/groceries/index.html.erb</p>
 
-<%= link_to "Add gocery list", new_user_grocery_path(current_user) %>
+<%= button_to "Add grocery list", new_user_grocery_path(current_user), method: :get %>
 
 <h2>Groceries List </h2>
 
@@ -24,11 +24,14 @@
 	<ul>
 		<% @checked_groceries.each do |y| %>
 			<%= form_tag "/users/#{current_user.id}/groceries/#{y.id}", method: :patch do %>
-				<%= check_box_tag(:checked, "false") %>
+				<%= check_box_tag(:checked, "false", true) %>
 				<%= submit_tag("Update") %>
 				<%= label_tag(:checked, y.ingredient_id) %>  <%= link_to "X",user_grocery_path(:id => y.id), method: :delete %>
 			<% end %>
 		<% end %>
+		<%= button_to "clear all", clear_checked_path(current_user), method: :delete %>
 	</ul>
+
+
 </div>
 
