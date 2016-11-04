@@ -1,4 +1,9 @@
 <h1>Welcome#index</h1>
 
-<%= link_to "Meal Planner" %>
-<%= link_to "Grocery List" %>
+<% if current_user %>
+	<%= link_to "Meal Planner" %>
+	<%= link_to "Grocery List", user_groceries_path(current_user) %>
+<% else %>
+	<%= link_to "Meal Planner" %>
+	<%= link_to "Grocery List", new_user_session_path %>
+<% end %>
