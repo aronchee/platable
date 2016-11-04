@@ -1,5 +1,10 @@
 <h1>Welcome#index</h1>
 
 <%= link_to "Search", search_path %>
-<%= link_to "Meal Planner" %>
-<%= link_to "Grocery List" %>
+<% if current_user %>
+	<%= link_to "Meal Planner", user_plans_path(current_user), method: :get %>
+	<%= link_to "Grocery List" %>
+<% else %>
+	<%= link_to "Meal Planner", new_user_session_path %>
+	<%= link_to "Grocery List" %>
+<% end %>
