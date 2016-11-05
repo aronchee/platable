@@ -12,7 +12,7 @@ class RecipesController < ApplicationController
   	params[:ingredient] ||= []
     params[:filter] ||= {}
     @all_ingredients = Ingredient.pluck(:name).sort
-    @recipes = Recipe.ingredient(params[:ingredient].reject(&:empty?)).filter(search_filters).simple
+    @results = Recipe.ingredient(params[:ingredient].reject(&:empty?)).filter(search_filters).simple
     respond_to do |format|
       format.html
       format.js
