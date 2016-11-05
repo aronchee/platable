@@ -1,3 +1,45 @@
 // Place all the styles related to the recipes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container-fluid.search {
+	background-image: url("bg-root.jpg");
+	background-size: 75%;
+	background-position: right center;
+	background-repeat: no-repeat;
+}
+
+.search-form {
+	max-height: calc(100% - 50px);
+	overflow-y: scroll;
+}
+
+.search-background {
+	background-color: rgba(255,255,255,0.5);
+	height: calc(100% - 50px);
+	padding: 0px !important;
+}
+
+.recipe-thumbnail {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px !important;
+	
+	.recipe-thumbnail-image {
+		width: 200px;
+		height: 200px;
+		overflow: hidden;
+	}
+
+	img {
+		max-height: 200px;
+	}
+}
+
+.container-fluid.cook {
+	background-image: url("bg-cook.png");
+	background-size: 40%;
+	background-position: right bottom;
+	background-repeat: no-repeat;
+}

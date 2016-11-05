@@ -1,2 +1,10 @@
 $('#search-results').empty();
-$('#search-results').append('<%= j render @recipes %>');
+<% if @results.any? %>
+	$('#search-results').append('<div class="col-lg-12"><%= @results.length %> result(s) found</div>');
+	<% @results.each do |r| %>
+		<% @recipe = r %>
+		$('#search-results').append('<%= j render @recipe %>');
+	<% end %>
+<% else %>
+	$('#search-results').append('No result found');
+<% end %>

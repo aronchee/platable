@@ -6,36 +6,44 @@
   <input type="text" name="ingredient[]" placeholder="ingredient" class="ingredient-autocomplete"/>
 	<br/><br/>
 	
+  <h3>Exclude</h3>
   <% Recipe::EXCLUSION.each do |x| %>
+    <span>
   	<%= check_box_tag x %>
   	<%= label "exclude_#{x}", x %>
+    </span>
   <% end %>
   <br/><br/>
 
+  <h3>Cuisine</h3>
   <% Recipe::CUISINE.each do |x| %>
   	<%= radio_button_tag 'cuisine', x %>
   	<%= label "cuisine_#{x}", x %>
   <% end %>
 	<br/><br/>
 
+  <h3>Category</h3>
   <% Recipe::CATEGORY.each do |x| %>
   	<%= radio_button_tag 'category', x %>
   	<%= label "category_#{x}", x %>
   <% end %>  
 	<br/><br/>
 	
+  <h3>Main Ingredient</h3>
   <% Recipe::MAIN_INGREDIENT.each do |x| %>
   	<%= radio_button_tag 'main', x %>
   	<%= label "main_#{x}", x %>
   <% end %>  
 	<br/><br/>
 	
+  <h3>Prep Time</h3>
   <% Recipe::PREP_TIME.each do |k, v| %>
   	<%= radio_button_tag 'time', v %>
   	<%= label "time_#{k}", k %>
   <% end %>
 	<br/><br/>
 	
+  <h3>Nutrition</h3>
 	<!-- nutrition filter -->
 	<%= radio_button_tag 'filter[calorie]', '< 400' %>
   <%= label "calorie_low", 'Low calories' %>

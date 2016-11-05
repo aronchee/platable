@@ -1,27 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LuckyPot</title>
+  <title>Platable</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-	<div id="user_nav">
-		<% if user_signed_in? %>
-			<%= link_to current_user.email, user_path(current_user) %>
-			<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-		<%else%>
-			<%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
-		<%end%>
-	</div>
-
 	<!-- for devise -->
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
+	<% if notice %><p class="notice"><%= notice %></p><% end %>
+	<% if notice %><p class="alert"><%= alert %></p><% end %>
 
-<%= yield %>
-	<footer>Final Project of students from NEXT academy</footer>
+	<div class="container-fluid main <%= current_path %>">
+		<%= render '/layouts/navigation' %>
+		<%= yield %>
+	</div>
 </body>
 </html>

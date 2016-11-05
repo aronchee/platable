@@ -1,0 +1,92 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require jquery-ui
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@font-face{ font-family: "Quest"; src: url("Quest.ttf") format("truetype"); }
+@font-face{ font-family: "Montserrat-Thin"; src: url("Montserrat-Thin.otf") format("opentype"); }
+@font-face{ font-family: "Montserrat-Light"; src: url("Montserrat-Light.otf") format("opentype"); }
+
+body {
+	font-family: "Montserrat-Light";
+}
+
+.container-fluid.main {
+	height: 100vh;
+	background-color: #f1f1f1;
+	overflow-y: hidden;
+}
+
+nav {
+	margin: 0px !important;
+	background: transparent !important;
+	border: none !important;
+}
+
+.navbar-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .navbar-nav {
+  	width: 75%;
+    text-align: center;
+  	display: flex;
+  	align-items: flex-start;
+  	justify-content: space-around;
+
+	  > li {
+	    float: none;
+	    
+	  }
+  }
+
+  .nav-main {
+  	background-color: #323232;
+  	color: #f1f1f1;
+  	font-family: "Quest";
+  	font-size: 30px;
+  	padding: 10px;
+  }
+}
+
+.navbar-float-right {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+
+  .dropdown-menu {
+  	position: absolute;
+  	top: 40px;
+  	right: 0px;
+  	width: 20px;
+  }
+}
+
+h1 {
+	font-family: "Montserrat-Thin";
+	font-size: 70px;
+	text-transform: uppercase;
+}
+
+h3 {
+	font-family: "Montserrat-Light";
+	font-size: 20px;
+	text-transform: uppercase;
+}
+
