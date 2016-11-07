@@ -11,13 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20161104022914) do
-
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
 
   create_table "groceries", force: :cascade do |t|
     t.integer  "user_id"
@@ -26,16 +23,6 @@ ActiveRecord::Schema.define(version: 20161104022914) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
-
-
-  create_table "plans", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "recipe_id"
-    t.date     "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 
   create_table "ingredient_amounts", force: :cascade do |t|
     t.integer  "amount"
@@ -78,9 +65,6 @@ ActiveRecord::Schema.define(version: 20161104022914) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "plans", ["recipe_id"], name: "index_plans_on_recipe_id", using: :btree
-  add_index "plans", ["user_id"], name: "index_plans_on_user_id", using: :btree
 
   create_table "recipes", force: :cascade do |t|
     t.string   "source"
