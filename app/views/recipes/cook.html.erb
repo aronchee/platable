@@ -1,2 +1,21 @@
-<h1>Recipes#cook</h1>
-<p>Find me in app/views/recipes/cook.html.erb</p>
+<div id="cook-container">
+<% if @recipe %>
+	<%= render 'directions' %>
+<% else %>
+	<h3>Find a recipe to cook</h3>
+	<%= form_tag '/recipes/search', method: :get, remote: true do %>
+		<%= text_field_tag :name, params[:name], class: "recipe-autocomplete" %>
+		<%= submit_tag "search" %>
+	<% end %>	
+<% end %>
+<button id="start">Cook now</button>
+</div>
+
+<script>
+  <% unless @recipe %>
+	  var availableTags = <%= @all_recipes.inspect.html_safe %>;
+	    $( ".recipe-autocomplete" ).autocomplete({
+	      source: availableTags
+	  });
+  <% end %>
+</script>
