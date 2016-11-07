@@ -1,30 +1,23 @@
 class GroceriesController < ApplicationController
 	before_action :authenticate_user!
 
-
   def index
-  	@user = current_user
+  	@all_ingredients = Ingredient.pluck(:name).sort
+    @user = current_user
   	@grocery = Grocery.new
-  	@unchecked_groceries = Grocery.where(user_id: @user.id, checked: false)
-  	@checked_groceries = Grocery.where(user_id: @user.id, checked: true)
-  end
-
-  def new
-  	@user = current_user
-  	@grocery = Grocery.new
-
+  	@unchecked_groceries = current_user.groceries.where(checked: false)
+  	@checked_groceries = current_user.groceries.where(checked: true)
   end
 
   def create
-  	@grocery = Grocery.new(grocery_params)
-  	@grocery[:user_id] = params[:user_id]
+  	@grocery = current_user.groceries.new
+  	@grocery[:ingredient_id] = Ingredient.find_by_name(params[:ingredient_name]).id
   	@grocery.save
 
   	redirect_to user_groceries_path
   end
 
   def update
-
   	@grocery = Grocery.find(params[:id])
 
   	if params[:checked] == "true" # uncheck => checked
@@ -39,7 +32,6 @@ class GroceriesController < ApplicationController
   end
 
   def destroy
-
   	if params[:id] == "clear_checked"
   		@groceries = Grocery.where(user_id: params[:user_id], checked: true)
   		@groceries.each do |x|

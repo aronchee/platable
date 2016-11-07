@@ -1,42 +1,31 @@
 class PlansController < ApplicationController
-  def new
-    @plan = Plan.new
-    @plans = Plan.where(user_id: params[:user_id])
-    @user = current_user
-    @date = params[:date]
-  end
-
   def create
-
-    @plan = Plan.new(plan_params)
-    @plan[:user_id] = params[:user_id]
+    @plan = current_user.plans.new(plan_params)
+    @plan.recipe = Recipe.find_by_name(params[:recipe_name])
     @plan.save
-
     redirect_to action: "index"
-
   end
 
   def index
+    @plan = Plan.new(user_id: current_user.id)
+    @plans = Plan.where(user_id: current_user.id)
+    @all_recipes = Recipe.pluck(:name).sort
 
-    @plans = Plan.where(user_id: params[:user_id])
-
-    @day1 = @plans.where(date: Date.today.strftime('%Y-%m-%d'))
-
+    starting_date = Date.today
+    @days = []
+    0.upto(6) do |n|
+      @days << ( starting_date + n.day )
+    end
   end
-
-  def show
-  end
-
 
   def destroy
-
     @plan = Plan.find(params[:id])
     @plan.destroy
     redirect_to action: "index"
   end
 
   private
-    def plan_params
-      params.require(:plan).permit(:recipe_id, :date)
-    end
+  def plan_params
+    params.require(:plan).permit(:date)
+  end
 end
