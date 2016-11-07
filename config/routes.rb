@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :maps
 
   resources :recipes, only: [:show, :index, :cook]
   get '/search', to: 'recipes#search'

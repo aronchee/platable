@@ -52,3 +52,8 @@ end
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'figaro'
+
+#gem for mapping
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'underscore'
