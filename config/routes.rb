@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
-
-  resources :recipes, only: [:show, :index, :cook]
   get '/search', to: 'recipes#search'
+  get '/recipes/search', to: 'recipes#search_by_name'
+  resources :recipes, only: [:show, :index, :cook]
+  
+
   get '/cook', to: 'recipes#cook'
+  get '/recipes/:id/cook', to: 'recipes#cook'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
