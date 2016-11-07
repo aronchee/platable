@@ -9,6 +9,7 @@ class RecipesController < ApplicationController
   end
 
   def search
+    @plan = Plan.new
   	params[:ingredient] ||= []
     params[:filter] ||= {}
     @all_ingredients = Ingredient.pluck(:name).sort

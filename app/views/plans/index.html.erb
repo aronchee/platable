@@ -23,6 +23,7 @@
 									<% @plans.where(date: day).each do |plan| %>
 									<tr><td>
 										<%= plan.recipe.name %>
+										<%= button_to "Delete", plan_path(plan), method: :delete, class: "btn btn-danger" %>
 									</td></tr>
 									<% end %>
 								<% end %>

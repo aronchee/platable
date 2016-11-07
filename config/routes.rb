@@ -71,5 +71,6 @@ Rails.application.routes.draw do
   # get 'users/edit'
   # get 'users/update'
   delete 'users/:user_id/groceries/clear_checked' => 'groceries#delete', as: :clear_checked
+  delete 'users/:user_id/groceries/clear_unchecked' => 'groceries#delete', as: :clear_unchecked
 
 end

@@ -18,12 +18,13 @@
 			<ul>
 				<% @unchecked_groceries.each do |x| %>
 					<%= form_tag "/users/#{current_user.id}/groceries/#{x.id}", method: :patch, class: "edit_list" do %>
-						<%= check_box_tag(:checked, "true") %>
+						<%= check_box_tag(:unchecked, "true") %>
 						<%= submit_tag "Update" %>
-						<%= label_tag(:checked, x.ingredient.name) %> 
+						<%= label_tag(:unchecked, x.ingredient.name) %> 
 						<%= link_to "(remove)",user_grocery_path(:id => x.id), method: :delete %>
 					<% end %>
 				<% end %>
+				<%= button_to "Clear Unchecked", clear_unchecked_path(current_user), method: :delete %>
 			</ul>
 		</div>	
 
@@ -39,7 +40,7 @@
 						<%= link_to "(remove)",user_grocery_path(:id => y.id), method: :delete %>
 					<% end %>
 				<% end %>
-				<%= button_to "clear all", clear_checked_path(current_user), method: :delete %>
+				<%= button_to "Clear Checked", clear_checked_path(current_user), method: :delete %>
 			</ul>
 
 
