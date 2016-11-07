@@ -1,14 +1,20 @@
-<div id="cook-container">
-<% if @recipe %>
-	<%= render 'directions' %>
-<% else %>
-	<h3>Find a recipe to cook</h3>
-	<%= form_tag '/recipes/search', method: :get, remote: true do %>
-		<%= text_field_tag :name, params[:name], class: "recipe-autocomplete" %>
-		<%= submit_tag "search" %>
-	<% end %>	
-<% end %>
-<button id="start">Cook now</button>
+<div id="main-container">
+  <div id="cook-container">
+    <% if @recipe %>
+    	<%= render 'directions' %>
+    <% else %>
+    	<h3>Find a recipe to cook</h3>
+    	<%= form_tag '/recipes/search', method: :get, remote: true do %>
+    		<%= text_field_tag :name, params[:name], class: "recipe-autocomplete" %>
+    		<%= submit_tag "search" %>
+    	<% end %>	
+    <% end %>
+  </div>
+  <div id="buttons">
+    <button id="start">Cook now</button>
+    <button id="stop">Stop</button>
+    <button id="pause-resume">Pause</button>
+  </div>
 </div>
 
 <script>
