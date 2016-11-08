@@ -9,34 +9,6 @@
 
 <h1>Maps</h1>
 
-<table width="50%">
-  <thead>
-    <tr>
-      <th>Address</th>
-      <th>Longitude</th>
-      <th>Latitude</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @maps.each do |map| %>
-      <tr>
-        <td><%= map.address %></td>
-        <td><%= map.longitude %></td>
-        <td><%= map.latitude %></td>
-        <td><%= link_to 'Show', map %></td>
-        <td><%= link_to 'Edit', edit_map_path(map) %></td>
-        <td><%= link_to 'Destroy', map, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Map', new_map_path %>
-
 <div style='width: 800px;'>
   <div id="geolocation" style='width: 800px; height: 400px;'></div>
 </div>

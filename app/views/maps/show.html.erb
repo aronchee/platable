@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Title:</strong>
+  <%= @map.title %>
+</p>
+
+<p>
   <strong>Address:</strong>
   <%= @map.address %>
 </p>
@@ -23,7 +28,7 @@
 
 <p>
 <% for location in @map.nearbys(100) %>
-    <li><%= link_to location.address, location %> (<%= location.distance.round(1) %> km)</li>
+    <li><%= link_to location.title, location %> (<%= location.distance.round(1) %> km)</li>
 <% end %>
 </p>
 

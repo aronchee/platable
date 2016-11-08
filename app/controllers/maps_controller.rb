@@ -28,10 +28,14 @@ class MapsController < ApplicationController
 
     @maps = Map.all
     @hash = Gmaps4rails.build_markers(@maps) do |map, marker|
+      map_path = view_context.link_to map.title, map_path(map)
       marker.lat map.latitude
       marker.lng map.longitude
-
-  end
+      marker.infowindow "<b>#{map_path}</b>"
+    end
+    # @json = Map.all.to_gmaps4rails do |map, marker|
+    #   marker.json({:title => map.title, :address => map.address})
+    # end
   end
   # GET /maps/1
   # GET /maps/1.json

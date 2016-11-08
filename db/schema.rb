@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20161107072612) do
   end
 
   create_table "maps", force: :cascade do |t|
+    t.string   "title"
     t.string   "address"
     t.float    "latitude"
     t.float    "longitude"

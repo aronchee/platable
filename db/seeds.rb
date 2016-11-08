@@ -159,3 +159,19 @@ end
 Ingredient.find_by_name("toothpick").destroy
 Ingredient.find_by_name("skewer").destroy
 Ingredient.find_by_name("").destroy
+
+grocery_list = [
+	["Night Market", "Jalan Tun Mohd Fuad 3", 3.141013, 101.627102],
+	["Ben's Grocery", "Glo Damansara, Jalan Damansara", 3.132962, 101.629875],
+	["AEON Big Tropicana Mall", "Jalan SS 20/27", 3.130819, 101.626828],
+	["Village Grocer", "Damansara Jaya", 3.127161, 101.616543],
+	["Hero Supermarket", "TTDI Plaza, Jalan Wan Kadir", 3.136879, 101.631187],
+	["Kedai Runcit Kian Huat", "Jalan SS22/11", 3.131165, 101.621165],
+	["Kedai Rakyat Malaysia", "Damansara Utama Uptown", 3.134046, 101.620957],
+	["Gan Mini Market", "Damansara Utama Uptown", 3.134552, 101.625734],
+	["Soon Thye Hang", "Glo Damansara, Jalan Damansara", 3.132464, 101.629972]
+]
+
+grocery_list.each do |title, address, latitude, longitude|
+	Map.create(title: title, address: address, latitude: latitude, longitude: longitude)
+end
