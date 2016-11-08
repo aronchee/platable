@@ -6,6 +6,22 @@ class RecipesController < ApplicationController
   end
 
   def cook
+    if params[:id]
+      @recipe = Recipe.find(params[:id]) if params[:id]
+      @directions = @recipe.directions.map { |x| x.split('.') }
+      @steps = @directions.length - 1
+    else
+      @all_recipes = Recipe.pluck(:name).sort
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end    
+  end
+
+  def search_by_name
+    recipe_id = Recipe.find_by_name(params[:name]).id
+    redirect_to "/recipes/#{recipe_id}/cook"
   end
 
   def search

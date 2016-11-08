@@ -1,0 +1,8 @@
+<% @directions.each_with_index do |dir, index| %>
+	<div class="cooking-step">
+		<h3><%= "STEP #{index+1}" %></h3>
+		<% dir.each do |x| %>
+			<div class="cooking-direction"><%= x %></div>
+		<% end %>
+	</div>
+<% end %>
