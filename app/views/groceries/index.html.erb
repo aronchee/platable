@@ -5,15 +5,15 @@
 	<div id="grocery-list">
 		<h1>Groceries List</h1><br/>
 
-		<%= form_for [@user, @grocery] do |f| %>
+		<%= form_for [@user, @grocery], html: { class: "form-inline" } do |f| %>
 
-			<%= f.label "Ingredient" %>
-			<%= text_field_tag :ingredient_name, params[:ingredient_name], class: "ingredient-autocomplete" %>
+			<%= f.label "Ingredient: " %>
+			<%= text_field_tag :ingredient_name, params[:ingredient_name], class: "ingredient-autocomplete form-control" %>
 
-			<%= f.submit "Add" %>
+			<%= f.submit "Add", class: "btn btn-secondary" %>
 
 		<% end %>
-		<h3>Groceries to buy </h3>
+		<h3>To buy </h3>
 		<div class="list" id="unchecked-list">
 			<ul>
 				<% @unchecked_groceries.each do |x| %>
@@ -24,7 +24,7 @@
 						<%= link_to "(remove)",user_grocery_path(:id => x.id), method: :delete %>
 					<% end %>
 				<% end %>
-				<%= button_to "Clear Unchecked", clear_unchecked_path(current_user), method: :delete %>
+				<%= button_to "Clear Unchecked", clear_unchecked_path(current_user), method: :delete, class: "btn btn-secondary" %>
 			</ul>
 		</div>	
 
@@ -40,7 +40,7 @@
 						<%= link_to "(remove)",user_grocery_path(:id => y.id), method: :delete %>
 					<% end %>
 				<% end %>
-				<%= button_to "Clear Checked", clear_checked_path(current_user), method: :delete %>
+				<%= button_to "Clear Checked", clear_checked_path(current_user), method: :delete, class: "btn btn-secondary" %>
 			</ul>
 
 

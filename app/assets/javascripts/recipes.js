@@ -1,4 +1,8 @@
 document.addEventListener("turbolinks:load", function() {
+  $('.search-form input[type=checkbox]').click(function() {
+      $(this).parents('form').submit();
+  });
+
   var running = false;
   var synth = window.speechSynthesis
   var utterThis = new SpeechSynthesisUtterance();

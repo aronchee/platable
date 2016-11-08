@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/search', to: 'recipes#search'
   get '/recipes/search', to: 'recipes#search_by_name'
   resources :recipes, only: [:show, :index, :cook]
+  post '/recipes/:id/groceries', to: 'recipes#add_groceries'
   
 
   get '/cook', to: 'recipes#cook'

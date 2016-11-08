@@ -50,10 +50,19 @@ nav {
   	align-items: flex-start;
   	justify-content: space-around;
 
-	  > li {
+	  > li a {
 	    float: none;
-	    
+	    padding: 15px !important;
 	  }
+
+    > li.active a {
+      background: none !important;
+      border-top: 5px solid #323232;
+    }
+
+    > li.nav-main a {
+      padding: 12px !important;
+    }
   }
 
   .nav-main {
@@ -70,11 +79,16 @@ nav {
   top: 0px;
   right: 0px;
 
+  .dropdown-toggle {
+    padding: 15px !important;
+  }
+
   .dropdown-menu {
   	position: absolute;
   	top: 40px;
   	right: 0px;
-  	width: 20px;
+    padding: 5px;
+    padding-left: 15px;
   }
 }
 

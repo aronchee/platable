@@ -1,6 +1,7 @@
+$('.container-fluid.search').css("background-image", "none")
 $('#search-results').empty();
 <% if @results.any? %>
-	$('#search-results').append('<div class="col-lg-12"><%= @results.length %> result(s) found</div>');
+	$('#search-results').append('<div class="col-lg-12"><h3><%= @results.length %> result(s) found</h3></div>');
 	<% @results.each do |r| %>
 		<% @recipe = r %>
 		$('#search-results').append('<%= j render @recipe %>');
@@ -8,3 +9,8 @@ $('#search-results').empty();
 <% else %>
 	$('#search-results').append('No result found');
 <% end %>
+$('.recipe-thumbnail').slice(6).hide();
+
+if ($('.recipe-thumbnail:last').is(':hidden')) {
+	$('#search-results').append('<div id="more-results"><a>More results</a></div>');	
+}

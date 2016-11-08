@@ -1,2 +1,33 @@
-<h1>Recipes#show</h1>
-<p>Find me in app/views/recipes/show.html.erb</p>
+<div id="recipe-container">
+	<div id="recipe-show">
+		<div class="col-lg-12"><h2><%= @recipe.name %></h2></div>
+		<div class="col-lg-6" id="left">
+			<div><%= image_tag @recipe.image %></div>
+			<p><%= link_to "View original recipe", @recipe.source %></p>
+			<p><%= @recipe.categories.join(", ") %></p>
+		</div>
+		<div class="col-lg-6">
+			<p>Ingredients:</p>
+			<ul>
+			<% @recipe.ingredient_text.each do |ing| %>
+				<li><%= ing %></li>
+			<% end %>
+			</ul>
+		</div>
+	</div>
+	<div>
+		<%= form_for @plan, html: {class: "form-inline" } do |f| %>
+			<%= f.hidden_field :recipe_id, value: "#{@recipe.id}" %>
+			<%= f.select :date, @days %>
+			<%= f.submit "Add to Plan", class: "btn btn-success" %>
+		<% end %>
+
+		<%= form_tag "/recipes/#{@recipe.id}/groceries" do %>
+			<%= submit_tag "Add to grocery list" %>
+		<% end %>
+		
+		<%= link_to "Cook now", "/recipes/#{@recipe.id}/cook" %>
+	</div>
+</div>
+<!-- <Recipe id: 1, source: "http://allrecipes.com/recipe/25523/sweet-and-sour-...", name: "Sweet and Sour Kielbasa", image: "http://images.media-allrecipes.com/userphotos/250x...", number_of_servings: 6, directions: ["In a slow cooker set for low heat, mix the ketchup, brown sugar, Worcestershire sauce, butter, onion, lemon juice, water, salt and pepper. Place the kielbasa sausage in the mixture. Cook 30  minutes, until the onions are soft, or as desired."], time_in_min: 45, ingredient_text: ["2 cups ketchup", "1/2 cup packed brown sugar", "2 tablespoons Worcestershire sauce", "6 tablespoons butter", "1/2 cup chopped onion", "4 tablespoons lemon juice", "1/2 cup water", "salt and pepper to taste", "1 pound kielbasa sausage"], categories: ["Appetizers and Snacks", "Meat and Poultry"], created_at: "2016-11-04 08:21:32", updated_at: "2016-11-04 08:21:32">
+ -->

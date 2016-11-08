@@ -3,6 +3,14 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @recipe = Recipe.find(params[:id])
+
+    @plan = current_user.plans.new
+    starting_date = Date.today
+    @days = []
+    0.upto(6) do |n|
+      @days << ( starting_date + n.day )
+    end
   end
 
   def cook
@@ -34,6 +42,14 @@ class RecipesController < ApplicationController
       format.html
       format.js
     end
+  end
+
+  def add_groceries
+    @recipe = Recipe.find(params[:id])
+    @recipe.ingredients.each do |ing|
+      current_user.groceries.find_or_create_by(ingredient_id: ing.id)
+    end
+    redirect_to "/users/#{current_user.id}/groceries"
   end
 
   private

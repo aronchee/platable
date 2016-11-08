@@ -10,21 +10,51 @@
 }
 
 .search-form {
-	max-height: calc(100% - 50px);
-	overflow-y: scroll;
+	max-height: calc(100% - 125px);
+	overflow-y: auto;
+
+	#search-button, .more-options {
+		margin-top: 10px;
+		display: flex;
+		justify-content: center;
+	}
+
+	.form-control, h2 {
+		text-align: center;
+		margin-right: 30px !important;
+	}
+
+	h2 {
+		font-size: 180%;
+	}
+
+	.form-control {
+		width: 90%;
+	}
 }
 
-.search-background {
-	background-color: rgba(255,255,255,0.5);
-	height: calc(100% - 50px);
-	padding: 0px !important;
+#search-results {
+	max-height: calc(100% - 100px);
+	overflow-y: auto;
+
+	h3 {
+		padding: 20px
+	}
+
+	#more-results {
+		text-align: center;
+		height: 20vh;
+	}
 }
 
 .recipe-thumbnail {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 	padding: 10px !important;
+	height: 35vh;
+	min-height: 200px;
 	
 	.recipe-thumbnail-image {
 		width: 200px;
@@ -38,7 +68,7 @@
 }
 
 .container-fluid.cook {
-	background-image: url("bg-cook.png");
+	background-image: url("bg-cook.jpg");
 	background-size: 40%;
 	background-position: right bottom;
 	background-repeat: no-repeat;
@@ -52,8 +82,8 @@
 	height: calc(100% - 50px);
 
 	> div {
-		width: 75vw;
-		max-width: 500px;
+		width: 95vw;
+		max-width: 600px;
 		text-align: center;
 
 		div {
@@ -61,15 +91,39 @@
 		}
 	}
 
+	.form-control {
+		width: 400px !important;
+	}
+
 	button {
 		margin: 20px 5px;
 	}
 }
 
-#buttons {
+#stop, #pause-resume, #repeat {
 	display: none;
 }
 
-#stop, #pause-resume, #repeat {
-	display: none;
+#recipe-container {
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	> div {
+		max-width: 750px;
+		width: 50vw;
+	}
+
+	h2 {
+		text-align: center;
+		margin-top: 10vh;
+		margin-bottom: 2vh;
+	}
+
+	#left img {
+		max-width: 100%;
+	}
+
+
 }

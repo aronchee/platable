@@ -7,7 +7,6 @@ class PlansController < ApplicationController
     @plan.save
 
     if @plan.save
-
       @recipe = Recipe.find(@plan.recipe_id)
       @ingredients = @recipe.ingredients.pluck(:name)
       @ingredients.each do |x|
@@ -16,7 +15,10 @@ class PlansController < ApplicationController
         @grocery.save
       end
     end
-    redirect_to action: "index"
+    respond_to do |format|
+      format.html { redirect_to action: "index" }
+      format.js
+    end
   end
 
   def index
@@ -33,6 +35,8 @@ class PlansController < ApplicationController
 
   def destroy
     @plan = Plan.find(params[:id])
+    @date = @plan.date.strftime('%d/%m')
+    @name = @plan.recipe.name
     @plan.destroy
 
     if @plan.destroy
@@ -45,7 +49,10 @@ class PlansController < ApplicationController
       end
     end
 
-    redirect_to action: "index"
+    respond_to do |format|
+      format.html { redirect_to action: "index" }
+      format.js
+    end
   end
 
   private

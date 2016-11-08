@@ -1,0 +1,3 @@
+var name = <%= @name.inspect.html_safe %>
+var date = <%= @date.inspect.html_safe %>
+$(`.planner-cell:contains(${date}) .planner-plan:contains(${name})`).remove();

@@ -1,76 +1,98 @@
-<%= form_tag '/search', method: :get, remote: true do %>
+<%= form_tag '/search', method: :get, remote: true, class: "form-group" do %>
 
-  <input type="text" name="ingredient[]" placeholder="ingredient" class="ingredient-autocomplete"/>
-  <input type="text" name="ingredient[]" placeholder="ingredient" class="ingredient-autocomplete"/>
-  <input type="text" name="ingredient[]" placeholder="ingredient" class="ingredient-autocomplete"/>
-  <input type="text" name="ingredient[]" placeholder="ingredient" class="ingredient-autocomplete"/>
-	<br/><br/>
+  <input type="text" name="ingredient[]" placeholder="ingredient 1" class="ingredient-autocomplete form-control"/>
+  <input type="text" name="ingredient[]" placeholder="ingredient 2" class="ingredient-autocomplete form-control"/>
+  <input type="text" name="ingredient[]" placeholder="ingredient 3" class="ingredient-autocomplete form-control"/>
+  <input type="text" name="ingredient[]" placeholder="ingredient 4" class="ingredient-autocomplete form-control"/>
 	
-  <h3>Exclude</h3>
-  <% Recipe::EXCLUSION.each do |x| %>
-    <span>
-  	<%= check_box_tag x %>
-  	<%= label "exclude_#{x}", x %>
-    </span>
+  <div class="col-lg-12"><h3>Prep Time</h3></div>
+  <% Recipe::PREP_TIME.each do |k, v| %>
+    <div class="col-xl-4 col-lg-6 col-md-12">
+     <%= check_box_tag 'time', v %>
+     <%= label "time_#{k}", k %>
+    </div>
   <% end %>
   <br/><br/>
 
-  <h3>Cuisine</h3>
-  <% Recipe::CUISINE.each do |x| %>
-  	<%= radio_button_tag 'cuisine', x %>
-  	<%= label "cuisine_#{x}", x %>
-  <% end %>
-	<br/><br/>
+  <div class="collapse" id="collapseExample">
+    <div class="col-lg-12"><h3>Exclusion</h3></div>
+    <% Recipe::EXCLUSION.each do |x| %>
+      <div class="col-xl-4 col-lg-6 col-md-12">
+    	<%= check_box_tag x %>
+    	<%= label "exclude_#{x}", x %>
+      </div>
+    <% end %>
+    <br/><br/>
 
-  <h3>Category</h3>
-  <% Recipe::CATEGORY.each do |x| %>
-  	<%= radio_button_tag 'category', x %>
-  	<%= label "category_#{x}", x %>
-  <% end %>  
-	<br/><br/>
-	
-  <h3>Main Ingredient</h3>
-  <% Recipe::MAIN_INGREDIENT.each do |x| %>
-  	<%= radio_button_tag 'main', x %>
-  	<%= label "main_#{x}", x %>
-  <% end %>  
-	<br/><br/>
-	
-  <h3>Prep Time</h3>
-  <% Recipe::PREP_TIME.each do |k, v| %>
-  	<%= radio_button_tag 'time', v %>
-  	<%= label "time_#{k}", k %>
-  <% end %>
-	<br/><br/>
-	
-  <h3>Nutrition</h3>
-	<!-- nutrition filter -->
-	<%= radio_button_tag 'filter[calorie]', '< 400' %>
-  <%= label "calorie_low", 'Low calories' %>
+    <div class="col-lg-12"><h3>Cuisine</h3></div>
+    <% Recipe::CUISINE.each do |x| %>
+      <div class="col-xl-6 col-lg-12">
+      	<%= check_box_tag 'cuisine', x %>
+      	<%= label "cuisine_#{x}", x %>
+      </div>
+    <% end %>
+  	<br/><br/>
 
-  <%= radio_button_tag 'filter[carbs]', '< 10.0' %>
-  <%= label "carbs_low", 'Low carbs' %>
+    <div class="col-lg-12"><h3>Category</h3></div>
+    <% Recipe::CATEGORY.each do |x| %>
+      <div class="col-xl-6 col-lg-12">
+      	<%= check_box_tag 'category', x %>
+      	<%= label "category_#{x}", x %>
+      </div>
+    <% end %>  
+  	<br/><br/>
+  			
+    <div class="col-lg-12"><h3>Nutrition</h3></div>
+  	<!-- nutrition filter -->
+    <div class="col-xl-6 col-lg-12">
+    	<%= check_box_tag 'filter[calorie]', '< 400' %>
+      <%= label "calorie_low", 'Low calories' %>
+    </div>
 
-  <%= radio_button_tag 'filter[sodium]', '< 140' %>
-  <%= label "sodium_low", 'Low sodium' %>
+    <div class="col-xl-6 col-lg-12">
+      <%= check_box_tag 'filter[carbs]', '< 10.0' %>
+      <%= label "carbs_low", 'Low carbs' %>
+    </div>
 
-  <%= radio_button_tag 'filter[fat]', '< 3' %>
-  <%= label "fat_low", 'Low fat' %>
+    <div class="col-xl-6 col-lg-12">
+      <%= check_box_tag 'filter[sodium]', '< 140' %>
+      <%= label "sodium_low", 'Low sodium' %>
+    </div>
 
-  <%= radio_button_tag 'filter[fat]', '< 10' %>
-  <%= label "fat_less", 'Less fat' %>
+    <div class="col-xl-6 col-lg-12">
+      <%= check_box_tag 'filter[fat]', '< 3' %>
+      <%= label "fat_low", 'Low fat' %>
+    </div>
 
-  <%= radio_button_tag 'filter[cholesterol]', '< 20' %>
-  <%= label "cholesterol_low", 'Low cholesterol' %>
+    <div class="col-xl-6 col-lg-12">
+      <%= check_box_tag 'filter[fat]', '< 10' %>
+      <%= label "fat_less", 'Less fat' %>
+    </div>
 
-  <%= radio_button_tag 'filter[cholesterol]', '= 0' %>
-  <%= label "cholesterol_none", 'No cholesterol' %>
+    <div class="col-xl-6 col-lg-12">
+      <%= check_box_tag 'filter[cholesterol]', '< 20' %>
+      <%= label "cholesterol_low", 'Low cholesterol' %>
+    </div>
 
-  <%= radio_button_tag 'filter[protein]', '> 20' %>
-  <%= label "protein_high", 'High protein' %>
+    <div class="col-xl-6 col-lg-12">
+      <%= check_box_tag 'filter[cholesterol]', '= 0' %>
+      <%= label "cholesterol_none", 'No cholesterol' %>
+    </div>
 
-	<!-- end of nutrition filter -->
-	<br/><br/>
+    <div class="col-xl-6 col-lg-12">
+      <%= check_box_tag 'filter[protein]', '> 20' %>
+      <%= label "protein_high", 'High protein' %>
+    </div>
 
-  <%= submit_tag 'search' %>
+  	<!-- end of nutrition filter -->
+  	<br/><br/>
+  </div>
+
+  <div class="col-lg-12" id="search-button"><%= submit_tag 'search', class: "btn btn-warning"%></div>
+
+  <div class="col-lg-12 more-options">
+    <button id="more-less-filter" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      More filters
+    </button>
+  </div>
 <% end %>
