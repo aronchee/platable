@@ -65,6 +65,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
   get 'welcome/index'
 
+
   resources :users do
     resources :groceries, only: [:index, :new, :create, :update, :destroy]
   end
@@ -73,5 +74,6 @@ Rails.application.routes.draw do
   # get 'users/edit'
   # get 'users/update'
   delete 'users/:user_id/groceries/clear_checked' => 'groceries#delete', as: :clear_checked
+  delete 'users/:user_id/groceries/clear_unchecked' => 'groceries#delete', as: :clear_unchecked
 
 end

@@ -11,16 +11,22 @@ class GroceriesController < ApplicationController
 
   def create
   	@grocery = current_user.groceries.new
-  	@grocery[:ingredient_id] = Ingredient.find_by_name(params[:ingredient_name]).id
-  	@grocery.save
+
+    if Ingredient.find_by_name(params[:ingredient_name])
+    	@grocery[:ingredient_id] = Ingredient.find_by_name(params[:ingredient_name]).id
+    	@grocery.save
+    else
+      Ingredient.create(name: params[:ingredient_name])
+      @grocery[:ingredient_id] = Ingredient.find_by_name(params[:ingredient_name]).id
+      @grocery.save
+    end
 
   	redirect_to user_groceries_path
   end
 
   def update
   	@grocery = Grocery.find(params[:id])
-
-  	if params[:checked] == "true" # uncheck => checked
+  	if params[:unchecked] == "true" # uncheck => checked
   		@grocery.update(checked: true)
   	elsif params[:checked] == "false" # if the checked item continue to be checked and they press update, no change
   		@grocery.update(checked: true)
@@ -37,6 +43,11 @@ class GroceriesController < ApplicationController
   		@groceries.each do |x|
   			x.destroy
   		end
+    elsif params[:id] == "clear_unchecked"
+      @groceries = Grocery.where(user_id: params[:user_id], checked: false)
+      @groceries.each do |x|
+        x.destroy
+      end
   	else
 	  	@grocery = Grocery.find(params[:id])
 	  	@grocery.destroy

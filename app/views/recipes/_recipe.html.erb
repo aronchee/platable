@@ -1,4 +1,17 @@
 <div class="recipe-thumbnail col-lg-4">
 	<div class="recipe-thumbnail-image" %><%= image_tag @recipe.image %></div>
 	<%= @recipe.name %><br/>
+	<% if current_user %>
+		<%= form_for @plan, html: {class: "form-inline" } do |f| %>
+			<%= f.hidden_field :recipe_id, value: "#{@recipe.id}" %>
+			<%= f.select(:date, [["#{Date.today.strftime('%a %d/%m')}", "#{Date.today}"],
+													["#{1.days.since.strftime('%a %d/%m')}", "#{1.days.since}"],
+													["#{2.days.since.strftime('%a %d/%m')}", "#{2.days.since}"],
+													["#{3.days.since.strftime('%a %d/%m')}", "#{3.days.since}"],
+													["#{4.days.since.strftime('%a %d/%m')}", "#{4.days.since}"],
+													["#{5.days.since.strftime('%a %d/%m')}", "#{5.days.since}"],
+													["#{6.days.since.strftime('%a %d/%m')}", "#{6.days.since}"]]) %>
+			<%= f.submit "Add to Plan", class: "btn btn-success" %>
+		<% end %>
+	<% end %>
 </div>
