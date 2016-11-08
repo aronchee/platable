@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get '/online', to: 'groceries#shop'
 
   resources :maps
 

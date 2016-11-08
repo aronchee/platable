@@ -45,7 +45,8 @@ class GroceriesController < ApplicationController
   	redirect_to user_groceries_path
   end
 
-
+  def shop #for online shop page
+  end
 
   private
   def grocery_params
