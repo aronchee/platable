@@ -1,13 +1,14 @@
 class PlansController < ApplicationController
   def create
+
     @plan = current_user.plans.new(plan_params)
-    if @plan.recipe == nil
+    if @plan.recipe == nil 
       @plan.recipe = Recipe.find_by_name(params[:recipe_name])
     end
-    @plan.save
 
-    if @plan.save
-
+    if params[:recipe_name] == ""
+    else
+      @plan.save
       @recipe = Recipe.find(@plan.recipe_id)
       @ingredients = @recipe.ingredients.pluck(:name)
       @ingredients.each do |x|
