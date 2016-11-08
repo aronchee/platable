@@ -75,6 +75,9 @@ ActiveRecord::Schema.define(version: 20161107072612) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "plans", ["recipe_id"], name: "index_plans_on_recipe_id", using: :btree
+  add_index "plans", ["user_id"], name: "index_plans_on_user_id", using: :btree
+
   create_table "recipes", force: :cascade do |t|
     t.string   "source"
     t.string   "name"

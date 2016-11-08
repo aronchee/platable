@@ -42,4 +42,10 @@
    
  
   } );
+
+  $(".link-source").on("click", function(){
+    var link = $(this).children('.hidden')[0].innerText;
+    window.open(link);
+  });
+
 </script>

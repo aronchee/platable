@@ -4,7 +4,7 @@ class PlansController < ApplicationController
     @plan = current_user.plans.new(plan_params)
     if @plan.recipe == nil 
       @plan.recipe = Recipe.find_by_name(params[:recipe_name])
-
+    end
 
     if params[:recipe_name] == ""
     else
