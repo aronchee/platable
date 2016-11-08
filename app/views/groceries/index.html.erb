@@ -24,7 +24,7 @@
 						<%= link_to "(remove)",user_grocery_path(:id => x.id), method: :delete %>
 					<% end %>
 				<% end %>
-				<%= button_to "Clear Unchecked", clear_unchecked_path(current_user), method: :delete %>
+				<%= button_to "Clear Unchecked", clear_unchecked_path(current_user), method: :delete, class: "btn btn-warning" %>
 			</ul>
 		</div>	
 
@@ -40,7 +40,7 @@
 						<%= link_to "(remove)",user_grocery_path(:id => y.id), method: :delete %>
 					<% end %>
 				<% end %>
-				<%= button_to "Clear Checked", clear_checked_path(current_user), method: :delete %>
+				<%= button_to "Clear Checked", clear_checked_path(current_user), method: :delete, class: "btn btn-warning" %>
 			</ul>
 
 
