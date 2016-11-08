@@ -2,9 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.jumbotron {
+
+  background-image: url("002.jpg");
+  background-size: cover;
+  background-position: center top;
+  height: 700px;
+
+
+  h1 {
+    color: white !important;
+  };
+
+  .light {
+    color: white;
+  };
+};
+
+
+
 .col-sm-3 {
-  margin: 10;
-  padding: 50px;
+  padding: 10px;
 };
 
 

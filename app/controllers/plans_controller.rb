@@ -6,7 +6,7 @@ class PlansController < ApplicationController
       @plan.recipe = Recipe.find_by_name(params[:recipe_name])
     end
 
-    if params[:recipe_name] == ""
+    if params[:recipe_name] == "" # prevent @plan to be save with no recipe_id, which will cause a bug
     else
       @plan.save
       @recipe = Recipe.find(@plan.recipe_id)
