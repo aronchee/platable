@@ -20,6 +20,8 @@
   <%= @map.latitude %>
 </p>
 
+<%= link_to "View in Google Map", "https://www.google.com/maps?ll=#{@map.latitude},#{@map.longitude}&z=20", target: "_blank" %>
+
 <p>
 <img>
 <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@map.latitude}%2C#{@map.longitude}&key= AIzaSyCbSb7pok886Z2rOTTyM2_Tl3JOUfdn4XM" %>
@@ -32,6 +34,4 @@
 <% end %>
 </p>
 
-
-<%= link_to 'Edit', edit_map_path(@map) %> |
 <%= link_to 'Back', maps_path %>

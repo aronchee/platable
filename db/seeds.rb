@@ -169,7 +169,8 @@ grocery_list = [
 	["Kedai Runcit Kian Huat", "Jalan SS22/11", 3.131165, 101.621165],
 	["Kedai Rakyat Malaysia", "Damansara Utama Uptown", 3.134046, 101.620957],
 	["Gan Mini Market", "Damansara Utama Uptown", 3.134552, 101.625734],
-	["Soon Thye Hang", "Glo Damansara, Jalan Damansara", 3.132464, 101.629972]
+	["Soon Thye Hang", "Glo Damansara, Jalan Damansara", 3.132464, 101.629972],
+	["1 Utama Megamall", "", 3.150862, 101.614665]
 ]
 
 grocery_list.each do |title, address, latitude, longitude|
