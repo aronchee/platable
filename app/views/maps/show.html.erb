@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @map.title %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @map.address %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @map.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @map.latitude %>
+</p>
+
+<%= link_to "View in Google Map", "https://www.google.com/maps?ll=#{@map.latitude},#{@map.longitude}&z=20", target: "_blank" %>
+
+<p>
+<img>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@map.latitude}%2C#{@map.longitude}&key= AIzaSyCbSb7pok886Z2rOTTyM2_Tl3JOUfdn4XM" %>
+</img>
+</p>
+
+<p>
+<% for location in @map.nearbys(100) %>
+    <li><%= link_to location.title, location %> (<%= location.distance.round(1) %> km)</li>
+<% end %>
+</p>
+
+<%= link_to 'Back', maps_path %>
