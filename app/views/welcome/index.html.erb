@@ -1,41 +1,47 @@
-<div class="jumbotron text-center">
-	<h1>Welcome to Platable</h1>
-	<p>One stop station for all your cooking needs</p>
-</div>
+
+<div class="container-fluid home">
+	<div id="welcome">
+		<div class="jumbotron text-center">
+			<h1>Welcome to Platable</h1>
+			<p class="light">One stop station for all your cooking needs</p>
+		</div>
 
 
-<div class="row>">
-	<div class="col-sm-3 text-center">
-		<div id="search"></div>
-		<h3><a href="/search">Search</a></h3>
-		<p>Find your desire recipe with our customised search function</p>
-	</div>
-	<div class="col-sm-3 text-center">
-	<div id="plan"></div>
-		<h3>
-			<% if current_user %>
-     		<%= link_to "PLAN", '/plans' %>
-    	<% else %>
-        <%= link_to "PLAN", new_user_session_path %>
-      <% end %>
-    </h3>
-		<p>Plan your meals a week ahead of time and it will automatically list down the ingredients needed in your grocery list</p>
-	</div>
-	<div class="col-sm-3 text-center">
-		<div id="shop"></div>
-		<h3>
-			<% if current_user %>
-       <%= link_to "SHOP", user_groceries_path(current_user) %>
-      <% else %>
-        <%= link_to "SHOP", new_user_session_path %>
-      <% end %>
-    </h3>
-		<p>With your grocery list, you can find the nearest supermarket or shop online forn your convenient</p>
-	</div>
-	<div class="col-sm-3 text-center">
-	<div id="cook"></div>
-		<h3>Cook</h3>
-		<p>Follow our sound guided recipe to cook your perfect meal</p>
+		<div class="row>">
+			<div class="col-sm-3 text-center">
+				<div id="search"></div>
+				<h3><a href="/search">Search</a></h3>
+				<p>Find your desire recipe with our customised search function</p>
+			</div>
+			<div class="col-sm-3 text-center">
+			<div id="plan"></div>
+				<h3>
+					<% if current_user %>
+		     		<%= link_to "PLAN", '/plans' %>
+		    	<% else %>
+		        <%= link_to "PLAN", new_user_session_path %>
+		      <% end %>
+		    </h3>
+				<p>Plan your meals a week ahead of time and it will automatically list down the ingredients needed in your grocery list</p>
+			</div>
+			<div class="col-sm-3 text-center">
+				<div id="shop"></div>
+				<h3>
+					<% if current_user %>
+		       <%= link_to "SHOP", user_groceries_path(current_user) %>
+		      <% else %>
+		        <%= link_to "SHOP", new_user_session_path %>
+		      <% end %>
+		    </h3>
+				<p>With your grocery list, you can find the nearest supermarket or shop online forn your convenient</p>
+			</div>
+			<div class="col-sm-3 text-center">
+			<div id="cook"></div>
+				<h3>Cook</h3>
+				<p>Follow our sound guided recipe to cook your perfect meal</p>
+			</div>
+		</div>
 	</div>
 </div>
+
 

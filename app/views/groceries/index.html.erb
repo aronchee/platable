@@ -1,6 +1,6 @@
 <div id="wrapper_groceries">
 	<div id="to_left">
-		Find nearest supermarkets
+		<%= link_to 'Find nearest supermarkets', maps_path %>
 	</div>
 	<div id="grocery-list">
 		<h1>Groceries List</h1><br/>
@@ -24,7 +24,7 @@
 						<%= link_to "(remove)",user_grocery_path(:id => x.id), method: :delete %>
 					<% end %>
 				<% end %>
-				<%= button_to "Clear Unchecked", clear_unchecked_path(current_user), method: :delete, class: "btn btn-secondary" %>
+				<%= button_to "Clear Unchecked", clear_unchecked_path(current_user), method: :delete, class: "btn btn-warning" %>
 			</ul>
 		</div>	
 
@@ -40,14 +40,14 @@
 						<%= link_to "(remove)",user_grocery_path(:id => y.id), method: :delete %>
 					<% end %>
 				<% end %>
-				<%= button_to "Clear Checked", clear_checked_path(current_user), method: :delete, class: "btn btn-secondary" %>
+				<%= button_to "Clear Checked", clear_checked_path(current_user), method: :delete, class: "btn btn-warning" %>
 			</ul>
 
 
 		</div>
 	</div>
 	<div id="to_right">
-		Shop online
+		<%= link_to 'Shop online', online_path %>
 	</div>
 </div>
 

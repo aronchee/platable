@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get '/online', to: 'groceries#shop'
+
+  resources :maps
+
   get '/search', to: 'recipes#search'
   get '/recipes/search', to: 'recipes#search_by_name'
   resources :recipes, only: [:show, :index, :cook]
