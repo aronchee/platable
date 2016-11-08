@@ -66,6 +66,10 @@
 	}
 }
 
-#stop, #pause-resume {
+#buttons {
+	display: none;
+}
+
+#stop, #pause-resume, #repeat {
 	display: none;
 }

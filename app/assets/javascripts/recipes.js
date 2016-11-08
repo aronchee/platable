@@ -2,7 +2,7 @@ document.addEventListener("turbolinks:load", function() {
   var running = false;
   var synth = window.speechSynthesis
   var utterThis = new SpeechSynthesisUtterance();
-  utterThis.rate = 2;
+  utterThis.rate = 0.8;
 
   var $clone = $('.cooking-step').clone();
   var $cookingStep = $('.cooking-step');
@@ -15,7 +15,7 @@ document.addEventListener("turbolinks:load", function() {
   function showAllSteps() {
     $('#cook-container').empty();
     $('#cook-container').append($cookingStep);
-    $("#start, #stop, #pause-resume").toggle();
+    $("#start, #stop, #pause-resume, #repeat").toggle();
   }
 
   function play(step, paragraph, delay) {
@@ -48,7 +48,7 @@ document.addEventListener("turbolinks:load", function() {
             setTimeout(function () {
                 showStep(step + 1);
                 play(step + 1, 0 , delay);
-              }, delay + 4000
+              }, delay + 0
             );
           }
         }
@@ -61,7 +61,7 @@ document.addEventListener("turbolinks:load", function() {
       running = true;
       synth.cancel();
       utterThis.voice = speechSynthesis.getVoices()[1];
-      $("#start, #stop, #pause-resume").toggle();
+      $("#start, #stop, #pause-resume, #repeat").toggle();
       showStep(0);
       play(0, 0, 0);
     }
@@ -85,6 +85,19 @@ document.addEventListener("turbolinks:load", function() {
       running = true;
       synth.resume();
       $("#pause-resume").html('Pause');
+    }
+  };
+
+  document.querySelector('#repeat').onclick = function () {
+    if (running) {
+      var header = $('h3')[0].innerHTML
+      var currentStep = /\d+/.exec(header)[0]
+      var current = parseInt(currentStep) - 1
+      running = false
+      showStep(current);
+      synth.cancel();
+      play(current, 0, 0);
+      running = true
     }
   };
 });
