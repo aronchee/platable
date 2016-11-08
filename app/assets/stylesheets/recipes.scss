@@ -44,7 +44,7 @@
 	background-repeat: no-repeat;
 }
 
-#cook-container {
+#main-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -56,12 +56,20 @@
 		max-width: 500px;
 		text-align: center;
 
-		> div {
+		div {
 			margin: 7px 0px;
 		}
 	}
 
 	button {
-		margin: 50px;
+		margin: 20px 5px;
 	}
+}
+
+#buttons {
+	display: none;
+}
+
+#stop, #pause-resume, #repeat {
+	display: none;
 }

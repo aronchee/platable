@@ -1,62 +1,103 @@
 document.addEventListener("turbolinks:load", function() {
-  // direction has many steps
-  var cookSteps = $('.cooking-step')
-  var numSteps = cookSteps.length
-  var indexStep = 0
-
-  // each step has a few smaller steps
-  var subStep = cookSteps.eq(indexStep).children('div')
-  var dirLength = subStep.length
-  var indexSub = 0
-
-  var synth = window.speechSynthesis;
+  var running = false;
+  var synth = window.speechSynthesis
   var utterThis = new SpeechSynthesisUtterance();
-  var timeBetDir = 10;
-  var timeBetStep = 50;
+  utterThis.rate = 0.8;
 
-  function playThis(index) {
-    var currentDir = subStep.eq(index);
-    if (index > 0) {
-      subStep.eq(index-1).css({"font-weight": "normal", "font-size": "100%"})
-    }
-    currentDir.css({"font-weight": "bold", "font-size": "125%"})
-    utterThis.text = currentDir[0].innerHTML;
-    synth.speak(utterThis);
-    console.log(subStep[index].innerHTML);
+  var $clone = $('.cooking-step').clone();
+  var $cookingStep = $('.cooking-step');
+
+  function showStep(step) {
+    $('#cook-container').empty()
+    $clone.eq(step).clone().appendTo($('#cook-container'));
   }
 
-  function playNext() {
-    indexSub++;
-    if (indexSub < dirLength) {
-      playThis(indexSub);
+  function showAllSteps() {
+    $('#cook-container').empty();
+    $('#cook-container').append($cookingStep);
+    $("#start, #stop, #pause-resume, #repeat").toggle();
+  }
+
+  function play(step, paragraph, delay) {
+    if (step > $clone.length - 1) {
+      showAllSteps();
+      running = false;
     } else {
-      indexStep++;
-      if (indexStep < numSteps) {
-        setTimeout(function(){
-          $('#cook-container').empty();
-          $('#cook-container').append(cookSteps[indexStep]);
-          
-          indexSub = 0;
-          subStep = cookSteps.eq(indexStep).children('div');
-          dirLength = subStep.length;
-          playThis(indexSub);
-        }, timeBetStep);
+      var $paragraphs = $('.cooking-step').eq(0).children('div');
+      if (paragraph > 0) {
+        $paragraphs.eq(paragraph - 1).css({
+          'font-weight': 'normal',
+          'font-size': '100%'
+        });
       }
+      var currentParagraph = $paragraphs.eq(paragraph);
+      currentParagraph.css({
+        'font-weight': 'bold',
+        'font-size': '125%'
+      });
+      utterThis.text = currentParagraph[0].innerHTML;
+      synth.speak(utterThis);
+      utterThis.onend = function(event) {
+        if (running) {
+          if (paragraph < $paragraphs.length - 1) {
+            setTimeout(function () {
+                play(step, paragraph + 1 , delay);
+              }, delay
+            );
+          } else {
+            setTimeout(function () {
+                showStep(step + 1);
+                play(step + 1, 0 , delay);
+              }, delay + 0
+            );
+          }
+        }
+      };
     }
   }
 
   document.querySelector('#start').onclick = function () {
-    var voice = speechSynthesis.getVoices()[1];
-    utterThis.voice = voice;
-    utterThis.rate = 2;
-
-	  $('#cook-container').empty();
-	  $('#cook-container').append(cookSteps[indexStep])
-		playThis(indexSub);
-		utterThis.addEventListener("end", function(){
-  		setTimeout(playNext, timeBetDir)
-  	});
-	  	
+    if (!running) {
+      running = true;
+      synth.cancel();
+      utterThis.voice = speechSynthesis.getVoices()[1];
+      $("#start, #stop, #pause-resume, #repeat").toggle();
+      showStep(0);
+      play(0, 0, 0);
+    }
   };
 
+  document.querySelector('#stop').onclick = function () {
+    if (running) {
+      running = false;
+      showAllSteps();
+      synth.cancel();
+    }
+  };
+
+  document.querySelector('#pause-resume').onclick = function () {
+    if (running && synth.speaking) {
+      running = false;
+      synth.pause();
+      $("#pause-resume").html('Continue');
+      console.log(synth);
+    } else if (!running) {
+      running = true;
+      synth.resume();
+      $("#pause-resume").html('Pause');
+    }
+  };
+
+  document.querySelector('#repeat').onclick = function () {
+    if (running) {
+      var header = $('h3')[0].innerHTML
+      var currentStep = /\d+/.exec(header)[0]
+      var current = parseInt(currentStep) - 1
+      running = false
+      showStep(current);
+      synth.cancel();
+      play(current, 0, 0);
+      running = true
+    }
+  };
 });
