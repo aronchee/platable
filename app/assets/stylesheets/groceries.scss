@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .container-fluid.groceries {
-	background-image: url("bg-shop2.png");
+	background-image: url("bg-shop2.jpg");
 	background-size: cover;
 	background-position: center top;
 }
@@ -14,8 +14,8 @@
 	height: 89%;
 	text-align: center;
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
+	align-items: center;
 
 	#to_right, #to_left {
 		height: 100px;
@@ -35,13 +35,21 @@
 #grocery-list {
 	width: 500px;
 	background-color: #f1f1f1;
+	border-radius: 10px;
 	box-shadow: 5px 5px 5px grey;
 	
-	height: calc(100%);
+	padding-bottom: 5vh;
+	margin-top: 5vh;
+	height: 100%;
+	overflow-y: auto;
 
 	h1 { font-size: 48px; }
-}
 
+	form.button_to {
+		position: relative;
+		left: -20px;
+	}
+}
 .ui-autocomplete {
   max-height: 60%;
   overflow-y: auto;

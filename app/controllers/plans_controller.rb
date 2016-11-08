@@ -4,9 +4,9 @@ class PlansController < ApplicationController
     @plan = current_user.plans.new(plan_params)
     if @plan.recipe == nil 
       @plan.recipe = Recipe.find_by_name(params[:recipe_name])
-    end
 
-    if params[:recipe_name] == "" # prevent @plan to be save with no recipe_id, which will cause a bug
+
+    if params[:recipe_name] == ""
     else
       @plan.save
       @recipe = Recipe.find(@plan.recipe_id)
@@ -17,7 +17,10 @@ class PlansController < ApplicationController
         @grocery.save
       end
     end
-    redirect_to action: "index"
+    respond_to do |format|
+      format.html { redirect_to action: "index" }
+      format.js
+    end
   end
 
   def index
@@ -34,6 +37,8 @@ class PlansController < ApplicationController
 
   def destroy
     @plan = Plan.find(params[:id])
+    @date = @plan.date.strftime('%d/%m')
+    @name = @plan.recipe.name
     @plan.destroy
 
     if @plan.destroy
@@ -46,7 +51,10 @@ class PlansController < ApplicationController
       end
     end
 
-    redirect_to action: "index"
+    respond_to do |format|
+      format.html { redirect_to action: "index" }
+      format.js
+    end
   end
 
   private

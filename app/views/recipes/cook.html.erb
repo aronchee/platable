@@ -4,17 +4,17 @@
     	<%= render 'directions' %>
     <% else %>
     	<h3>Find a recipe to cook</h3>
-    	<%= form_tag '/recipes/search', method: :get, remote: true do %>
-    		<%= text_field_tag :name, params[:name], class: "recipe-autocomplete" %>
-    		<%= submit_tag "search" %>
+    	<%= form_tag '/recipes/search', method: :get, class: "form-inline" do %>
+    		<%= text_field_tag :name, params[:name], class: "recipe-autocomplete form-control" %>
+    		<%= submit_tag "search", class: "btn btn-secondary" %>
     	<% end %>	
     <% end %>
   </div>
   <div id="buttons">
-    <button id="start">Cook now</button>
-    <button id="stop">Stop</button>
-    <button id="pause-resume">Pause</button>
-    <button id="repeat">Repeat this step</button>
+    <button id="start" class= "btn btn-secondary" >Cook now</button>
+    <button id="stop" class= "btn btn-secondary">Stop</button>
+    <button id="pause-resume" class= "btn btn-secondary">Pause</button>
+    <button id="repeat" class= "btn btn-secondary">Repeat this step</button>
   </div>
 </div>
 
@@ -24,5 +24,7 @@
 	    $( ".recipe-autocomplete" ).autocomplete({
 	      source: availableTags
 	  });
+
+    $('#buttons').toggle();
   <% end %>
 </script>

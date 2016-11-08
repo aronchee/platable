@@ -1,40 +1,26 @@
 <div id="wrapper_planner">
 	<div id="planner">
 		<h1>Plan your meal for a week</h1>
-
-		<table id="outer">
-		  <tr>
-		  	<% @days.each do |day| %>
-		  		<td>
-		  			<table id="inner">
-		  				<tr>
-		  				<td>
-		  					<%= day.strftime('%a %d/%m') %><br/>
-		  				</td>
-		  				</tr>
-		  				<tr><td>
-								<%= form_for @plan, html: {class: "form-inline" } do |f| %>
-									<%= text_field_tag :recipe_name, params[:recipe_name], class: "recipe-autocomplete form-control" %>
-									<%= f.hidden_field :date, value: day %>
-									<%= f.submit "+", class: "btn btn-secondary" %>
-								<% end %>
-								</td></tr>
-									<% if @plans.any? %>
-									<% @plans.where(date: day).each do |plan| %>
-									<tr><td>
-										<%= link_to "#{plan.recipe.name}", "/recipes/#{plan.recipe.id}/cook" %>
-										<%= button_to "Delete", plan_path(plan), method: :delete, class: "btn btn-danger" %>
-									</td></tr>
-									<% end %>
-								<% end %>
-						</table>
-		  		</td>
-		  		<td class="empty">
-		  			.
-		  		</td>
-		  	<% end %>
-		  </tr>
-		</table>
+		<div id="planner-table">
+		<% @days.each do |day| %>
+			<div class="planner-cell">
+			<%= day.strftime('%a %d/%m') %><br/>
+			<%= form_for @plan, html: {class: "form-inline" }, remote: true do |f| %>
+				<%= text_field_tag :recipe_name, params[:recipe_name], class: "recipe-autocomplete form-control" %>
+				<%= f.hidden_field :date, value: day %>
+				<%= f.submit "+", class: "btn btn-secondary" %>
+			<% end %>
+			<% if @plans.any? %>
+				<% @plans.where(date: day).each do |plan| %>
+					<div class="planner-plan">
+						<%= link_to plan.recipe.name, plan.recipe %>
+						<%= button_to "Delete", plan_path(plan), method: :delete, remote: true, class: "btn btn-danger" %>
+					</div>
+				<% end %>
+			<% end %>
+			</div>
+		<% end %>
+		</div>
 	</div>
 </div>
 

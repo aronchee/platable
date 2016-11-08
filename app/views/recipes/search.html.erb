@@ -1,10 +1,8 @@
 <div class="col-lg-3 search-form">
-	<h2 style="color: #b64131">Generate recipe from ingredients</h2>
+	<h2 style="color: #b64131">Search recipe based on ingredient(s)</h2>
 	<%= render 'form' %>
 </div>
-<div class="col-lg-9 search-background">
-	<div id="search-results">
-	</div>
+<div class="col-lg-9" id="search-results">
 </div>
 
 <script>
@@ -13,5 +11,35 @@
     $( ".ingredient-autocomplete" ).autocomplete({
       source: availableTags
     });
+
+    document.querySelector('#more-less-filter').onclick = function() {
+      if (this.innerHTML === "Hide filters") {
+        this.innerHTML = "More filters";
+      } else {
+        this.innerHTML = "Hide filters";  
+      }
+    }
+
+    var didScroll = false;
+    var resultsDiv = document.querySelector('#search-results')
+
+    resultsDiv.onscroll = function() {
+      var pixelsBelow = resultsDiv.scrollHeight - resultsDiv.clientHeight - resultsDiv.scrollTop;
+      if (pixelsBelow < 20) {
+        didScroll = true;
+      }
+    }
+
+    setInterval(function() {
+      if (didScroll && $('.recipe-thumbnail:last').is(':hidden')) {
+        didScroll = false;
+        $('.recipe-thumbnail:hidden').slice(0,6).show();
+        if ($('.recipe-thumbnail:last').is(':visible')) {
+          $('#more-results').hide();
+        }
+      }
+    }, 1000); 
+   
+ 
   } );
 </script>

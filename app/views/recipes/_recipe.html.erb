@@ -1,6 +1,6 @@
 <div class="recipe-thumbnail col-lg-4">
-	<div class="recipe-thumbnail-image" %><%= image_tag @recipe.image %></div>
-	<%= link_to "#{@recipe.name}", "/recipes/#{@recipe.id}/cook" %><br/>
+	<div class="recipe-thumbnail-image" %><a href=<%= "recipes/#{@recipe.id}" %>><%= image_tag @recipe.image %></a></div>
+	<div class="recipe-thumbnail-caption"><a href=<%= "recipes/#{@recipe.id}" %>><%= @recipe.name %></a></div><br/>
 	<% if current_user %>
 		<%= form_for @plan, html: {class: "form-inline" } do |f| %>
 			<%= f.hidden_field :recipe_id, value: "#{@recipe.id}" %>

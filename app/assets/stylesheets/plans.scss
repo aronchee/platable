@@ -3,9 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .container-fluid.plans {
-	background-image: url("bg-plan.png");
-	background-size: 75%;
-	background-position: right top;
+	background-image: url("bg-plan.jpg");
+	background-size: 40%;
+	background-position: right bottom;
 	background-repeat: no-repeat;
 }
 
@@ -15,7 +15,39 @@
 	display: flex;
 	justify-content: center;
 	text-align: center;
+
+	h1 {
+		margin-top: 5vh;
+		margin-bottom: 2vh;
+	}
 }
+
+#planner {
+	width: 90vw;
+}
+
+#planner-table {
+	display: flex;
+
+	.planner-cell {
+		width: 14.286%;
+		height: 50vh;
+		border: 1px solid #777;
+		background-color: rgba(240,240,240,0.9);
+		margin: 5px;
+		padding: 15px 5px;
+		overflow: auto;
+	}
+
+	.planner-plan {
+		margin: 10px 0px;
+	}
+}
+
+.recipe-autocomplete {
+	width: 70% !important;
+}
+
 
 table#outer {
   width: 90vw;
@@ -24,7 +56,7 @@ table#outer {
   word-wrap: break-word;
 
   > tbody > tr > td {
-		background-color: rgba(240,240,240,0.8);
+		background-color: rgba(240,240,240,0.9);
 		border: 1px solid black;
 		vertical-align: top;
 		padding-top: 10px !important;
@@ -36,14 +68,4 @@ table#outer {
 		border: none;
 		color: #f1f1f1;
 	}
-}
-
-table#inner {
-	> tbody > tr > td {
-		padding: 5px 0px !important;
-	}
-}
-
-.recipe-autocomplete {
-	width: 70% !important;
 }

@@ -15,19 +15,19 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <div class="navbar-wrapper">
       <ul class="nav navbar-nav">
-        <li><a href="/search">SEARCH</a></li>
+        <li class="<%= 'active' if current_page?(search_path) %>"><a href="/search">RECIPE</a></li>
         <% if current_user %>
-          <li><%= link_to "PLAN", '/plans' %></li>
+          <li class="<%= 'active' if current_page?(plans_path) %>"><%= link_to "PLAN", '/plans', class: "active"  %></li>
         <% else %>
           <li><%= link_to "PLAN", new_user_session_path %></li>
         <% end %>
-        <li class="nav-main"><a href="/">PLATABLE</a></li>
+        <li class="nav-main"><a href="/">PLAtABLe</a></li>
         <% if current_user %>
-          <li><%= link_to "SHOP", user_groceries_path(current_user) %></li>
+          <li class="<%= 'active' if current_page?(user_groceries_path(current_user)) %>"><%= link_to "SHOP", user_groceries_path(current_user) %></li>
         <% else %>
           <li><%= link_to "SHOP", new_user_session_path %></li>
         <% end %>
-        <li><a href="/cook">COOK</a></li>
+        <li class="<%= 'active' if current_page?(cook_path) %>"><a href="/cook">COOK</a></li>
       </ul>
       </div>
       <ul class="nav navbar-float-right">
