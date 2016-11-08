@@ -43,3 +43,33 @@
 	background-position: right bottom;
 	background-repeat: no-repeat;
 }
+
+#main-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 50px;
+	height: calc(100% - 50px);
+
+	> div {
+		width: 75vw;
+		max-width: 500px;
+		text-align: center;
+
+		div {
+			margin: 7px 0px;
+		}
+	}
+
+	button {
+		margin: 20px 5px;
+	}
+}
+
+#buttons {
+	display: none;
+}
+
+#stop, #pause-resume, #repeat {
+	display: none;
+}
