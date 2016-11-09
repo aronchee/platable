@@ -15,8 +15,7 @@
  *= require_self
  */
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
+
 
 @font-face{ font-family: "Quest"; src: url("Quest.ttf") format("truetype"); }
 @font-face{ font-family: "Montserrat-Thin"; src: url("Montserrat-Thin.otf") format("opentype"); }
@@ -62,6 +61,10 @@ nav {
 
     > li.nav-main a {
       padding: 12px !important;
+    }
+
+    > li.nav-main a:hover {
+      color: #f1f1f1;
     }
   }
 

@@ -8,6 +8,15 @@
     		<%= text_field_tag :name, params[:name], class: "recipe-autocomplete form-control" %>
     		<%= submit_tag "search", class: "btn btn-secondary" %>
     	<% end %>	
+      <% if @recipes.any? %>
+        <br/>
+        <h3>Recipes you plan to cook</h3>
+        <% @recipes.each do |recipe| %>
+          <div>
+            <%= link_to recipe.name, "/recipes/#{recipe.id}/cook"  %>
+          </div>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
   <div id="buttons">

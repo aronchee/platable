@@ -13,7 +13,14 @@
 			<% if @plans.any? %>
 				<% @plans.where(date: day).each do |plan| %>
 					<div class="planner-plan">
-						<%= link_to plan.recipe.name, plan.recipe %>
+						<a href="#" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-html="true"><div><%= plan.recipe.name %></div>
+						<div class="hidden">
+							<% plan.recipe.ingredients.each do |ing| %>
+								<div><%= ing.name %></div>
+							<% end %>
+						</div>
+						</a>
+						<%= button_to "Add to grocery list", "/plans/#{plan.id}/create_groceries", method: :post, class: "btn btn-success" %>
 						<%= button_to "Delete", plan_path(plan), method: :delete, remote: true, class: "btn btn-danger" %>
 					</div>
 				<% end %>
@@ -24,13 +31,20 @@
 	</div>
 </div>
 
-
-
 <script>
   $( function() {
     var availableTags = <%= @all_recipes.inspect.html_safe %>;
     $( ".recipe-autocomplete" ).autocomplete({
       source: availableTags
+    });	
+		
+		$('[data-toggle="popover"]').popover({
+        placement : 'top',
+        html : true,
+        content : function() {
+        	return $(this).children('.hidden')[0].innerHTML;
+        }
     });
+
   } );
 </script>

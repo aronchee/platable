@@ -1,6 +1,6 @@
 <div class="recipe-thumbnail col-lg-4">
 	<div class="recipe-thumbnail-image" %><a href=<%= "recipes/#{@recipe.id}" %> class="link-source"><span class="hidden"><%= @recipe.source %></span><%= image_tag @recipe.image %></a></div>
-	<div class="recipe-thumbnail-caption"><a href=<%= "recipes/#{@recipe.id}" %> class="link-source"><span class="hidden"><%= @recipe.source %></span><%= @recipe.name %></a></div><br/>
+	<div class="recipe-thumbnail-caption"><a href=<%= "recipes/#{@recipe.id}" %> class="link-source"><span class="hidden"><%= @recipe.source %></span><%= @recipe.name %></a></div>
 	<% if current_user %>
 		<%= form_for @plan, html: {class: "form-inline" } do |f| %>
 			<%= f.hidden_field :recipe_id, value: "#{@recipe.id}" %>
@@ -10,7 +10,7 @@
 													["#{3.days.since.strftime('%a %d/%m')}", "#{3.days.since}"],
 													["#{4.days.since.strftime('%a %d/%m')}", "#{4.days.since}"],
 													["#{5.days.since.strftime('%a %d/%m')}", "#{5.days.since}"],
-													["#{6.days.since.strftime('%a %d/%m')}", "#{6.days.since}"]]) %>
+													["#{6.days.since.strftime('%a %d/%m')}", "#{6.days.since}"]], {}, { class: "form-control"} ) %>
 			<%= f.submit "Add to Plan", class: "btn btn-success" %>
 		<% end %>
 	<% end %>

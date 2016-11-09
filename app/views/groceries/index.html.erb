@@ -1,6 +1,6 @@
 <div id="wrapper_groceries">
 	<div id="to_left">
-		<%= link_to 'Find nearest supermarkets', maps_path %>
+		<a href="/maps" id="link-right" data-content="Supermarkets near me" data-toggle="popover" data-placement="right" data-trigger="hover"><div class="round-chevron"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></div></a>
 	</div>
 	<div id="grocery-list">
 		<h1>Groceries List</h1><br/>
@@ -21,10 +21,8 @@
 						<%= check_box_tag(:unchecked, "true") %>
 						<%= submit_tag "Update" %>
 						<%= label_tag(:unchecked, x.ingredient.name) %> 
-						<%= link_to "(remove)",user_grocery_path(:id => x.id), method: :delete %>
 					<% end %>
 				<% end %>
-				<%= button_to "Clear Unchecked", clear_unchecked_path(current_user), method: :delete, class: "btn btn-warning" %>
 			</ul>
 		</div>	
 
@@ -37,19 +35,19 @@
 						<%= check_box_tag(:checked, "false", true) %>
 						<%= submit_tag("Update") %>
 						<%= label_tag(:checked, y.ingredient.name ) %>
-						<%= link_to "(remove)",user_grocery_path(:id => y.id), method: :delete %>
 					<% end %>
 				<% end %>
-				<%= button_to "Clear Checked", clear_checked_path(current_user), method: :delete, class: "btn btn-warning" %>
+				<%= button_to "Clear All", clear_checked_path(current_user), method: :delete, class: "btn btn-warning" %>
 			</ul>
 
 
 		</div>
 	</div>
 	<div id="to_right">
-		<%= link_to 'Shop online', online_path %>
+		<a href="/online" id="link-right" data-content="Shop online" data-toggle="popover" data-placement="left" data-trigger="hover"><div class="round-chevron"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></div></a>
 	</div>
 </div>
+
 
 <script>
   $( function() {

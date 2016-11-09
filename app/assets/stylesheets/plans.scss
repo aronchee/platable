@@ -37,6 +37,18 @@
 		margin: 5px;
 		padding: 15px 5px;
 		overflow: auto;
+
+		.popover-content {
+    	font-size: 12px;
+    	text-align: left;
+    	column-count: 2;
+		}
+
+		input.btn {
+			font-size: 12px !important;
+			padding: 4px !important;
+			margin: 2px;
+		}
 	}
 
 	.planner-plan {

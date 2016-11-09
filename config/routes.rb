@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get '/cook', to: 'recipes#cook'
   get '/recipes/:id/cook', to: 'recipes#cook'
+  post '/plans/:id/create_groceries', to: 'groceries#create_from_plan'
+  post '/recipes/:id/create_groceries', to: 'groceries#create_from_recipe'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

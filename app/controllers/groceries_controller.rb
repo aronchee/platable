@@ -5,8 +5,8 @@ class GroceriesController < ApplicationController
   	@all_ingredients = Ingredient.pluck(:name).sort
     @user = current_user
   	@grocery = Grocery.new
-  	@unchecked_groceries = current_user.groceries.where(checked: false)
-  	@checked_groceries = current_user.groceries.where(checked: true)
+  	@unchecked_groceries = current_user.groceries.where(checked: false).joins(:ingredient).order("ingredients.name")
+  	@checked_groceries = current_user.groceries.where(checked: true).joins(:ingredient).order("ingredients.name")
   end
 
   def create
@@ -38,25 +38,29 @@ class GroceriesController < ApplicationController
   end
 
   def destroy
-  	if params[:id] == "clear_checked"
-  		@groceries = Grocery.where(user_id: params[:user_id], checked: true)
-  		@groceries.each do |x|
-  			x.destroy
-  		end
-    elsif params[:id] == "clear_unchecked"
-      @groceries = Grocery.where(user_id: params[:user_id], checked: false)
-      @groceries.each do |x|
-        x.destroy
-      end
-  	else
-	  	@grocery = Grocery.find(params[:id])
-	  	@grocery.destroy
-  	end
+  	@groceries = current_user.groceries
+    @groceries.destroy_all
 
   	redirect_to user_groceries_path
   end
 
-  def shop #for online shop page
+  def shop
+  end
+
+  def create_from_plan
+    @plan = Plan.find(params[:id])
+    @plan.recipe.ingredients.each do |x|
+      current_user.groceries.find_or_create_by(ingredient_id: x.id)
+    end
+    redirect_to '/plans'
+  end
+
+  def create_from_recipe
+    @recipe = Recipe.find(params[:id])
+    @recipe.ingredients.each do |x|
+      current_user.groceries.find_or_create_by(ingredient_id: x.id)
+    end
+    redirect_to @recipe
   end
 
   private

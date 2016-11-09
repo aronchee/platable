@@ -1,12 +1,12 @@
+var running = false;
+var synth = window.speechSynthesis
+var utterThis = new SpeechSynthesisUtterance();
+utterThis.rate = 0.9;
+
 document.addEventListener("turbolinks:load", function() {
   $('.search-form input[type=checkbox]').click(function() {
       $(this).parents('form').submit();
   });
-
-  var running = false;
-  var synth = window.speechSynthesis
-  var utterThis = new SpeechSynthesisUtterance();
-  utterThis.rate = 0.8;
 
   var $clone = $('.cooking-step').clone();
   var $cookingStep = $('.cooking-step');
@@ -14,6 +14,11 @@ document.addEventListener("turbolinks:load", function() {
   function showStep(step) {
     $('#cook-container').empty()
     $clone.eq(step).clone().appendTo($('#cook-container'));
+  }
+
+  function showNewStep(step) {
+    $('#cook-container').empty()
+    $clone.eq(step).clone().clone().appendTo($('#cook-container'));
   }
 
   function showAllSteps() {
@@ -60,14 +65,15 @@ document.addEventListener("turbolinks:load", function() {
     }
   }
 
-  document.querySelector('#start').onclick = function () {
+  document.querySelector('#start').onclick = function() {
     if (!running) {
       running = true;
       synth.cancel();
-      utterThis.voice = speechSynthesis.getVoices()[1];
+      utterThis.voice = speechSynthesis.getVoices().filter(function(obj) { return obj.lang === "en-US" })[0];
       $("#start, #stop, #pause-resume, #repeat").toggle();
       showStep(0);
       play(0, 0, 0);
+      recognition.start();
     }
   };
 
@@ -76,6 +82,7 @@ document.addEventListener("turbolinks:load", function() {
       running = false;
       showAllSteps();
       synth.cancel();
+      recognition.stop();
     }
   };
 
@@ -97,11 +104,37 @@ document.addEventListener("turbolinks:load", function() {
       var header = $('h3')[0].innerHTML
       var currentStep = /\d+/.exec(header)[0]
       var current = parseInt(currentStep) - 1
-      running = false
-      showStep(current);
       synth.cancel();
-      play(current, 0, 0);
-      running = true
+      running = false
+      showNewStep(current);
+      setTimeout(function(){
+        running = true;
+        play(current, 0, 0);
+      }, 300);
     }
   };
+  var recognition = new webkitSpeechRecognition();
+  recognition.continuous = true;
+
+  recognition.onresult = function(event) {
+    var result = '';
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+      result += event.results[i][0].transcript;
+    }
+
+    if ( result.includes("start") ) {
+      if (!running) {
+        document.querySelector('#start').click();
+      }
+    } else if ( result.includes("pause") || result.includes("resume") ) {
+      document.querySelector('#pause-resume').click();
+    } else if ( result.includes("stop") ) {
+      if (running) {
+        document.querySelector('#stop').click();
+      }
+    } else if ( result.includes("repeat") ) {
+      document.querySelector('#repeat').click();
+    }
+    
+  }
 });
