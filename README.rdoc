@@ -1,9 +1,10 @@
 == README
 
 This is a team project by us:
-Brigette Leong
-Jit Siang
-Aron Chee
+
+1. Brigette Leong
+2. Jit Siang
+3. Aron Chee
 
 Title: Platable
 
