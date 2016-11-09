@@ -2,12 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.jumbotron {
+.jumbotron.home {
 
   background-image: url("002.jpg");
   background-size: cover;
   background-position: center top;
-  height: 700px;
+  height: calc(100% - 80px) !important;
 
 
   h1 {
@@ -19,45 +19,6 @@
   };
 };
 
-
-
 .col-sm-3 {
   padding: 10px;
-};
-
-
-#search {
-	width: 100px;
-  height: 100px;
-  margin: auto;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url("033.png");
-};
-
-#plan {
-	width: 100px;
-  height: 100px;
-  margin: auto;
-  background-repeat: no-repeat;
-  background-size: contain;
-	background-image: url("021.png");
-};
-
-#shop {
-	width: 100px;
-  height: 100px;
-  margin: auto;
-  background-repeat: no-repeat;
-  background-size: contain;
-	background-image: url("054.png");
-};
-
-#cook {
-	width: 100px;
-  height: 100px;
-  margin: auto;
-  background-repeat: no-repeat;
-  background-size: contain;
-	background-image: url("060.png");
 };

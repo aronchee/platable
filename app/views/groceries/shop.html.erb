@@ -1,34 +1,52 @@
-<!DOCTYPE html>
-<html lang = "en">
-
-<h1> Online Shop </h1>
-
-<div class="floating-box">
-<p>
-	<a href= "https://eshop.tesco.com.my/groceries/en-GB/?gclid=CjwKEAiA6YDBBRDwtpTQnYzx5lASJAC57ObM48kXDt8EVNyG6Zwmhd_FfDTfCWYpmp6Nqabqd4mWahoCq7fw_wcB" target="_blank"><img class="img-circle" src="http://www.dundrum.ie/images/Tesco_mobile_.jpg"/></a>
-</p>
+<div class="jumbotron shop text-right">
+	<h1> Shop online </h1>
 </div>
+<div id="wrapper_shop">
+	<div id="to_left">
+		<a href='<%= "/users/#{current_user.id}/groceries" %>' id="link-right" data-content="Grocery list" data-toggle="popover" data-placement="right" data-trigger="hover"><div class="round-chevron"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></div></a>
+	</div>
+	<div style>
+		<div class="container-outer col-lg-12">
+			<div class="floating-box">
+			<p>
+				<a href= "https://eshop.tesco.com.my/groceries/en-GB/?gclid=CjwKEAiA6YDBBRDwtpTQnYzx5lASJAC57ObM48kXDt8EVNyG6Zwmhd_FfDTfCWYpmp6Nqabqd4mWahoCq7fw_wcB" target="_blank"><div class="img-circle"><img src="http://www.dundrum.ie/images/Tesco_mobile_.jpg"/></div></a>
+			</p>
+			</div>
 
-<div class="floating-box">
-<p>
-	<a href= "http://www.11street.my/category/grocery/2049" target="_blank"><img class="img-circle" src="https://pbs.twimg.com/profile_images/565422662537580544/9uSz8-e6.png"/></a>
-</p>
-</div>
+			<div class="floating-box">
+			<p>
+				<a href= "http://www.11street.my/category/grocery/2049" target="_blank"><div class="img-circle"><img src="https://pbs.twimg.com/profile_images/565422662537580544/9uSz8-e6.png"/></div></a>
+			</p>
+			</div>
 
-<div class="floating-box">
-<p>
-	<a href= "https://www.happyfresh.my/" target="_blank"><img class="img-circle" src="http://studentjob.co.id/wp-content/uploads/2015/04/happyfresh-dribbble_1x.png"/></a>
-</p>
-</div>
+			<div class="floating-box">
+			<p>
+				<a href= "https://www.happyfresh.my/" target="_blank"><div class="img-circle"><img src="http://studentjob.co.id/wp-content/uploads/2015/04/happyfresh-dribbble_1x.png"/></div></a>
+			</p>
+			</div>
+		</div>
 
-<div class="floating-box">
-<p>
-	<a href= "http://www.freshcart.com.my/freshcart/" target="_blank"><img class="img-circle" src="https://pbs.twimg.com/profile_images/424482819629264896/W3jSSExx_400x400.jpeg"/></a>
-</p>
-</div>
+		<div class="container-outer col-lg-12">
+			<div class="floating-box">
+			<p>
+				<a href= "http://www.freshcart.com.my/freshcart/" target="_blank"><div class="img-circle"><img src="https://pbs.twimg.com/profile_images/424482819629264896/W3jSSExx_400x400.jpeg"/></div></a>
+			</p>
+			</div>
 
-<div class="floating-box">
-<p>
-	<a href= "http://shop.redtick.com/" target="_blank"><img class="img-circle" src="http://188.166.180.103/wp-content/uploads/2016/05/RedTick-300x209.png"/></a>
-</p>
+			<div class="floating-box">
+			<p>
+				<a href= "http://shop.redtick.com/" target="_blank"><div class="img-circle"><img src="https://d12man5gwydfvl.cloudfront.net/wp-content/uploads/2014/06/27235104/redtick.png"></div></a>
+			</p>
+			</div>
+
+			<div class="floating-box">
+			<p>
+				<a href= "http://www.samsgroceria.com/" target="_blank"><div class="img-circle"><img src="http://www.bigsale.com.my/images/merchant/350/sam-s-groceria-250x110.jpg"></div></a>
+			</p>
+			</div>
+		</div>
+	</div>
+	<div id="to_right">
+		<a href="/maps" id="link-right" data-content="Supermarkets near me" data-toggle="popover" data-placement="left" data-trigger="hover"><div class="round-chevron"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></div></a>
+	</div>
 </div>

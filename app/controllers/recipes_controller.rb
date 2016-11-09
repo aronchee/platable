@@ -21,6 +21,9 @@ class RecipesController < ApplicationController
     else
       @all_recipes = Recipe.pluck(:name).sort
     end
+
+    @recipes = current_user.plans.order(:date).map { |x| x.recipe }
+
     respond_to do |format|
       format.html
       format.js

@@ -1,14 +1,56 @@
+.jumbotron.shop {
+  background-image: url("bg-shop-online.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  margin-bottom: 0px !important;
+
+  h1 {
+    color: white !important;
+  };
+};
+
+#wrapper_shop {
+	width: 100%;
+	height: calc(100% - 250px);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+}
+
 .img-circle {
-	width:180px;
-	height:180px;
-	border-radius: 70%;
-	border:1px solid #CCCCCC;
+	width:150px;
+	height:150px;
+	border-radius: 150px;
+	box-shadow: 3px 3px 3px #ccc;
+	overflow: hidden;
+	position: relative;
+	background-color: #fff;
+	margin: 0px 10px;
+
+	img {
+		max-width: 100%;
+		max-height: 100%;
+		position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+	}
 }
 
 .floating-box {
 	display: inline-block;
 	width: 150px;
 	height: 75px;
-	margin: 20px;
+	margin: 15px 25px;
 	border: 0;
+}
+
+.container-outer {
+	display: flex;
+	justify-content: center;
+	height: 180px;
 }

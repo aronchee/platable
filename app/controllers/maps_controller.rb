@@ -25,13 +25,13 @@ class MapsController < ApplicationController
   # GET /maps
   # GET /maps.json
   def index
-
     @maps = Map.all
     @hash = Gmaps4rails.build_markers(@maps) do |map, marker|
       map_path = view_context.link_to map.title, map_path(map)
       marker.lat map.latitude
       marker.lng map.longitude
-      marker.infowindow "<b>#{map_path}</b>"
+      marker.infowindow "<h3>#{map.title}</h3><div>#{map.address}</div><a href='https://www.google.com/maps?ll=#{map.latitude},#{map.longitude}&z=20', target='_blank'>View in Google Maps<a>"
+      marker.json({:title => map.title, :address => map.address})
     end
     # @json = Map.all.to_gmaps4rails do |map, marker|
     #   marker.json({:title => map.title, :address => map.address})
@@ -64,6 +64,10 @@ class MapsController < ApplicationController
       format.html { redirect_to maps_url, notice: 'Map was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def gmaps4rails_sidebar
+    "<span class='foo'>#{name}</span>" #put whatever you want here
   end
 
   private

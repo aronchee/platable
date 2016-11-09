@@ -62,6 +62,10 @@ nav {
     > li.nav-main a {
       padding: 12px !important;
     }
+
+    > li.nav-main a:hover {
+      color: #f1f1f1;
+    }
   }
 
   .nav-main {

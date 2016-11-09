@@ -1,4 +1,5 @@
 <div class="planner-plan">
 	<%= link_to plan.recipe.name, plan.recipe %>
+	<%= button_to "Add to grocery list", "/plans/#{plan.id}/create_groceries", method: :post, class: "btn btn-success" %>
 	<%= button_to "Delete", plan_path(plan), method: :delete, remote: true, class: "btn btn-danger" %>
 </div>

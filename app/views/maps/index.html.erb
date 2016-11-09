@@ -1,30 +1,49 @@
-<!DOCTYPE html>
-<html lang = "en">
-
-<p id="notice"><%= notice %></p>
-
 <script src="//maps.google.com/maps/api/js?key=AIzaSyCkqmrTKNzPuTxRq1BNLjZQlKcDhzzL8GQ"></script>
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
 <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
 
-<h1>Maps</h1>
-
-<div style='width: 800px;'>
-  <div id="geolocation" style='width: 800px; height: 400px;'></div>
+<div id="wrapper_map" >
+  <div id="to_left">
+    <a href="/online" id="link-left" data-content="Shop online" data-toggle="popover" data-placement="right" data-trigger="hover"><div class="round-chevron"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></div></a>
+  </div>
+  <div id="map-container">
+    <h1>Supermarkets near me</h1>
+    <div class="col-lg-8">
+      <div id="geolocation" style='width: 100%; height: 400px;'></div>
+    </div>
+    <div class="col-lg-4 map-caption">
+      <ul id="markers_list">  </ul>
+    </div>
+  </div>
+  <div id="to_right">
+    <a href='<%= "/users/#{current_user.id}/groceries" %>' id="link-right" data-content="Grocery list" data-toggle="popover" data-placement="left" data-trigger="hover"><div class="round-chevron"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></div></a>
+  </div>
 </div>
 
-<script type='text/javascript'>
-var handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id: 'geolocation'}}, function(){
-  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-  // be aware chrome >= 50 requires https for geolocation to work
-  if(navigator.geolocation)
-    navigator.geolocation.getCurrentPosition(displayOnMap);
-  });
 
-    function displayOnMap(position){
+<script type='text/javascript'>
+  function createSidebarLi(json){
+    return ("<li><a>" + json.title + "</a></li>");
+  };
+
+  function bindLiToMarker($li, marker){
+    $li.on('click', function(){
+      handler.getMap().setZoom(14);
+      marker.setMap(handler.getMap()); //because clusterer removes map property from marker
+      marker.panTo();
+      google.maps.event.trigger(marker.getServiceObject(), 'click');
+    })
+  };
+      
+  function createSidebar(json_array){
+    _.each(json_array, function(json){
+      var $li = $( createSidebarLi(json) );
+      $li.appendTo('#markers_list');
+      bindLiToMarker($li, json.marker);
+    });
+  };
+
+  function displayOnMap(position){
     var marker = handler.addMarker({
       lat: position.coords.latitude,
       lng: position.coords.longitude,
@@ -36,7 +55,30 @@ handler.buildMap({ provider: {}, internal: {id: 'geolocation'}}, function(){
         "infowindow": "You are here!"
     });
     handler.map.centerOn(marker);
+  };
 
-};
+  var handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'geolocation'}}, function(){
+    var json_array = <%=raw @hash.to_json %>
+    var markers = handler.addMarkers(json_array);
+    _.each(json_array, function(json, index){
+      debugger;
+      json.marker = markers[index];
+    });
+
+    
+
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    createSidebar(json_array);
+    // be aware chrome >= 50 requires https for geolocation to work
+    if(navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(displayOnMap);
+  });
+
+
+
+
+  
 
 </script>
