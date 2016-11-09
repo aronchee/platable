@@ -14,7 +14,8 @@ The purpose is to help User with their cooking basis with four simple steps:
 3. Shop Nearby/Online
 4. Cook
 
-Link for our webapp: platable-my.herokuapp.com
+Link for our webapp: https://platable-my.herokuapp.com
+
 Link for our animation video: https://publish.animatron.io/5822a6fa9581f51a86808094?c=1&w=1080&h=607&r=0&a=0
 
 Have a look.
