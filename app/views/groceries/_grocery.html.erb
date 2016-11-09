@@ -1,4 +1,11 @@
-<%= form_for @groceries do |f| %>
-	<%= f.check_box :checked %>
-	<%= f.label :checked, @groceries.ingredient_id %>
+<% if @grocery.checked %>
+	<%= form_tag "/users/#{current_user.id}/groceries/#{@grocery.id}", method: :patch, remote: true, class: "edit_list" do %>
+		<%= check_box_tag(:checked, "false", true) %>
+		<%= label_tag(:checked, @grocery.ingredient.name ) %>
+	<% end %>
+<% else %>
+	<%= form_tag "/users/#{current_user.id}/groceries/#{@grocery.id}", method: :patch, remote: true, class: "edit_list" do %>
+		<%= check_box_tag(:unchecked, "true") %>
+		<%= label_tag(:unchecked, @grocery.ingredient.name) %> 
+	<% end %>
 <% end %>

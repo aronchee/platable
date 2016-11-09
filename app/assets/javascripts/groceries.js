@@ -6,3 +6,5 @@ document.addEventListener("turbolinks:load", function() {
 			$(this).parent('form').submit();
 	});
 });
+
+  

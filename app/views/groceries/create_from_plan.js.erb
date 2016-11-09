@@ -1,0 +1,5 @@
+var button = $('.planner-cell:contains("<%= @plan.date.strftime('%d/%m') %>") .planner-plan:contains("<%= @plan.recipe.name %>") input[type="submit"].btn-success')[0]
+button.value = "Added!"
+setTimeout(function(){
+	button.value = "Add to grocery list"
+}, 2000);

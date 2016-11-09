@@ -1,3 +1,5 @@
-var date = <%= @plan.date.strftime('%d/%m').inspect.html_safe %>;
-$(`.planner-cell:contains(${date})`).append('<%= j render @plan %>');
-$(`.planner-cell:contains(${date}) .form-control`).val('');
+var button = $('.recipe-thumbnail:contains("<%= @plan.recipe.name %>") input[type="submit"]')[0]
+button.value = "Added!"
+setTimeout(function(){
+	button.value = "Add to Plan"
+}, 2000);

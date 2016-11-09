@@ -5,7 +5,7 @@
 		<% @days.each do |day| %>
 			<div class="planner-cell">
 			<%= day.strftime('%a %d/%m') %><br/>
-			<%= form_for @plan, html: {class: "form-inline" }, remote: true do |f| %>
+			<%= form_for @plan, html: {class: "form-inline" } do |f| %>
 				<%= text_field_tag :recipe_name, params[:recipe_name], class: "recipe-autocomplete form-control" %>
 				<%= f.hidden_field :date, value: day %>
 				<%= f.submit "+", class: "btn btn-secondary" %>
@@ -20,7 +20,7 @@
 							<% end %>
 						</div>
 						</a>
-						<%= button_to "Add to grocery list", "/plans/#{plan.id}/create_groceries", method: :post, class: "btn btn-success" %>
+						<%= button_to "Add to grocery list", "/plans/#{plan.id}/create_groceries", method: :post, remote: true, class: "btn btn-success" %>
 						<%= button_to "Delete", plan_path(plan), method: :delete, remote: true, class: "btn btn-danger" %>
 					</div>
 				<% end %>

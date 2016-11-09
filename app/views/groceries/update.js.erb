@@ -1,0 +1,8 @@
+var bool = <%= @bool %>;
+if (bool) {
+	$('#unchecked-list form:contains("<%= @grocery.ingredient.name %>")')[0].remove();
+	$('#checked-list ul').append('<%= j render @grocery %>');
+} else {
+	$('#checked-list form:contains("<%= @grocery.ingredient.name %>")')[0].remove();
+	$('#unchecked-list ul').append('<%= j render @grocery %>');
+}

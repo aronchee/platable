@@ -1,7 +1,7 @@
 var running = false;
 var synth = window.speechSynthesis
 var utterThis = new SpeechSynthesisUtterance();
-utterThis.rate = 0.9;
+utterThis.rate = 0.8;
 
 document.addEventListener("turbolinks:load", function() {
   $('.search-form input[type=checkbox]').click(function() {
@@ -57,7 +57,7 @@ document.addEventListener("turbolinks:load", function() {
             setTimeout(function () {
                 showStep(step + 1);
                 play(step + 1, 0 , delay);
-              }, delay + 0
+              }, delay + 2000
             );
           }
         }
@@ -72,7 +72,7 @@ document.addEventListener("turbolinks:load", function() {
       utterThis.voice = speechSynthesis.getVoices().filter(function(obj) { return obj.lang === "en-US" })[0];
       $("#start, #stop, #pause-resume, #repeat").toggle();
       showStep(0);
-      play(0, 0, 0);
+      play(0, 0, 1000);
       recognition.start();
     }
   };
@@ -109,7 +109,7 @@ document.addEventListener("turbolinks:load", function() {
       showNewStep(current);
       setTimeout(function(){
         running = true;
-        play(current, 0, 0);
+        play(current, 0, 1000);
       }, 300);
     }
   };
@@ -121,6 +121,7 @@ document.addEventListener("turbolinks:load", function() {
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       result += event.results[i][0].transcript;
     }
+    console.log(result);
 
     if ( result.includes("start") ) {
       if (!running) {

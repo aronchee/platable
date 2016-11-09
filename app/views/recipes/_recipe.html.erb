@@ -2,7 +2,7 @@
 	<div class="recipe-thumbnail-image" %><a href=<%= "recipes/#{@recipe.id}" %> class="link-source"><span class="hidden"><%= @recipe.source %></span><%= image_tag @recipe.image %></a></div>
 	<div class="recipe-thumbnail-caption"><a href=<%= "recipes/#{@recipe.id}" %> class="link-source"><span class="hidden"><%= @recipe.source %></span><%= @recipe.name %></a></div>
 	<% if current_user %>
-		<%= form_for @plan, html: {class: "form-inline" } do |f| %>
+		<%= form_for @plan, html: {class: "form-inline" }, remote: true do |f| %>
 			<%= f.hidden_field :recipe_id, value: "#{@recipe.id}" %>
 			<%= f.select(:date, [["#{Date.today.strftime('%a %d/%m')}", "#{Date.today}"],
 													["#{1.days.since.strftime('%a %d/%m')}", "#{1.days.since}"],

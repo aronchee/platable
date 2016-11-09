@@ -1,0 +1,3 @@
+var date = <%= @plan.date.strftime('%d/%m').inspect.html_safe %>;
+$(`.planner-cell:contains(${date})`).append('<%= j render @plan %>');
+$(`.planner-cell:contains(${date}) .form-control`).val('');

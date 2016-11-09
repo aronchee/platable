@@ -33,8 +33,11 @@ class GroceriesController < ApplicationController
   	else
   		@grocery.update(checked: false) # if they uncheck the box, :checked = nil, then
   	end
-
-  	redirect_to user_groceries_path
+    @bool = @grocery.checked
+    respond_to do |format|
+      format.html { redirect_to user_groceries_path }
+      format.js
+    end
   end
 
   def destroy
@@ -52,7 +55,11 @@ class GroceriesController < ApplicationController
     @plan.recipe.ingredients.each do |x|
       current_user.groceries.find_or_create_by(ingredient_id: x.id)
     end
-    redirect_to '/plans'
+
+    respond_to do |format|
+      format.html { redirect_to '/plans' }
+      format.js
+    end
   end
 
   def create_from_recipe
