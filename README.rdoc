@@ -17,9 +17,9 @@ The purpose is to help User with their cooking basis with four simple steps:
 
 Link for our webapp: https://platable-my.herokuapp.com
 
-Link for our animation video: https://publish.animatron.io/5822b40420e86a6f1012a202?c=1&w=1080&h=607&r=0&a=0
+Link for our animation video: https://publish.animatron.io/5824357564af4a4f3b9fdeac?c=1&w=640&h=360&r=0&a=0
 
-https://publish.animatron.io/5822cecead1352f6d5f46ad8?c=1&w=1650&h=928&r=0&a=0
+Link for bigger resolution animation video: https://publish.animatron.io/5824357564af4a4f3b9fdeac?c=1&w=1650&h=928&r=0&a=0
 
 Have a look.
 
