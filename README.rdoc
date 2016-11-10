@@ -19,7 +19,7 @@ Link for our webapp: https://platable-my.herokuapp.com
 
 Link for our animation video: https://publish.animatron.io/5824357564af4a4f3b9fdeac?c=1&w=640&h=360&r=0&a=0
 
-Link for bigger resolution animation video: https://publish.animatron.io/5824357564af4a4f3b9fdeac?c=1&w=1650&h=928&r=0&a=0
+Link for bigger resolution animation video: https://publish.animatron.io/58243654d7ae6649ccb249bd?c=1&w=1650&h=928&r=0&a=0
 
 Have a look.
 
